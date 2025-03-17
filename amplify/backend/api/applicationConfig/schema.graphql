@@ -8,10 +8,6 @@ type AiClientCompany @model @auth(rules: [{ allow: public }]) {
 type AiLlm @model @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
-    intelligence: Int!
-    speed: Int!
-    inputPriceInDollars: Float!
-    outputPriceInDollars: Float!
     input: [String!]!
     output: [String!]!
     description: String!
@@ -55,11 +51,10 @@ type AiParameters @model @auth(rules: [{ allow: public }]) {
     responseLanguage: String!
 }
 
-type AiTools @model @auth(rules: [{ allow: public }]) {
+type AiTool @model @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
-    usedIn: [AiConfiguration]
-        @manyToMany(relationName: "AiToolsAiConfiguration")
+    usedIn: [AiConfiguration] @manyToMany(relationName: "AiToolAiConfiguration")
 }
 
 type AiConfiguration @model @auth(rules: [{ allow: public }]) {
@@ -67,8 +62,7 @@ type AiConfiguration @model @auth(rules: [{ allow: public }]) {
     name: String!
     aiParametersID: ID! @index(name: "byAiParameters", sortKeyFields: ["id"])
     aiParameters: AiParameters @hasOne(fields: ["aiParametersID"])
-    availableTools: [AiTools]
-        @manyToMany(relationName: "AiToolsAiConfiguration")
+    tools: [AiTool] @manyToMany(relationName: "AiToolAiConfiguration")
 }
 
 type AiIndexationConfiguration @model @auth(rules: [{ allow: public }]) {
@@ -118,12 +112,76 @@ type AiSettings @model @auth(rules: [{ allow: public }]) {
     processes: [AiProcess] @manyToMany(relationName: "AiProcessAiSettings")
 }
 
+type BackendTopic @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    arn: String!
+    usedIn: [BackendSettings]
+        @manyToMany(relationName: "BackendTopicBackendSettings")
+}
+
+type BackendQueue @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    url: String!
+    usedIn: [BackendSettings]
+        @manyToMany(relationName: "BackendQueueBackendSettings")
+}
+
+type BackendDatabaseType @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+}
+
+type BackendDatabase @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    backendDatabaseTypeID: ID!
+        @index(name: "byBackendDatabaseType", sortKeyFields: ["id"])
+    type: BackendDatabaseType @hasOne(fields: ["backendDatabaseTypeID"])
+    reference: String!
+    usedIn: [BackendSettings]
+        @manyToMany(relationName: "BackendDatabaseBackendSettings")
+}
+
+type BackendEndpoints @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    url: String!
+    description: String!
+    method: String!
+    parametersWIP: String
+    usedIn: [BackendSettings]
+        @manyToMany(relationName: "BackendEndpointsBackendSettings")
+}
+
 type BackendSettings @model @auth(rules: [{ allow: public }]) {
     id: ID!
+    name: String!
+    region: String!
+    version: String!
+    secretName: String!
+    endpoints: [BackendEndpoints]
+        @manyToMany(relationName: "BackendEndpointsBackendSettings")
+    databases: [BackendDatabase]
+        @manyToMany(relationName: "BackendDatabaseBackendSettings")
+    queues: [BackendQueue]
+        @manyToMany(relationName: "BackendQueueBackendSettings")
+    topics: [BackendTopic]
+        @manyToMany(relationName: "BackendTopicBackendSettings")
 }
 
 type FrontendSettings @model @auth(rules: [{ allow: public }]) {
     id: ID!
+    name: String!
+    domain: String!
+    cssS3Url: String
+}
+
+type ApplicationStageCognitoUserPool @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    userPoolId: String!
 }
 
 type ApplicationStage @model @auth(rules: [{ allow: public }]) {
@@ -137,15 +195,19 @@ type ApplicationStage @model @auth(rules: [{ allow: public }]) {
     frontendSettingsID: ID!
         @index(name: "byFrontendSettings", sortKeyFields: ["id"])
     frontendSettings: FrontendSettings @hasOne(fields: ["frontendSettingsID"])
+    cognitoUserPoolID: ID!
+        @index(name: "byCognitoUserPool", sortKeyFields: ["id"])
+    cognitoUserPool: ApplicationStageCognitoUserPool
+        @hasOne(fields: ["cognitoUserPoolID"])
 }
 
 type Application @model @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
-    devStageID: ID! @index(name: "byDevStage", sortKeyFields: ["id"])
-    stagingStageID: ID! @index(name: "byStagingStage", sortKeyFields: ["id"])
-    prodStageID: ID! @index(name: "byProdStage", sortKeyFields: ["id"])
+    devStageID: ID @index(name: "byDevStage", sortKeyFields: ["id"])
     DEV: ApplicationStage @hasOne(fields: ["devStageID"])
+    stagingStageID: ID @index(name: "byStagingStage", sortKeyFields: ["id"])
     STAGING: ApplicationStage @hasOne(fields: ["stagingStageID"])
+    prodStageID: ID @index(name: "byProdStage", sortKeyFields: ["id"])
     PROD: ApplicationStage @hasOne(fields: ["prodStageID"])
 }
