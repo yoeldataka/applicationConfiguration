@@ -51,10 +51,39 @@ type AiParameters @model @auth(rules: [{ allow: public }]) {
     responseLanguage: String!
 }
 
-type AiTool @model @auth(rules: [{ allow: public }]) {
+type AiApiTool @model @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
-    usedIn: [AiConfiguration] @manyToMany(relationName: "AiToolAiConfiguration")
+    func: String!
+    useCases: String!
+    description: String!
+    payload: String
+    endpoint: [BackendEndpoint!]
+        @manyToMany(relationName: "BackendEndpointAiApiTool")
+    usedIn: [AiToolGroup] @manyToMany(relationName: "AiApiToolAiToolGroup")
+}
+
+type AiRenderTool @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    func: String!
+    useCases: String!
+    description: String!
+    payload: String
+    action: String!
+    component: [FrontendComponent!]
+        @manyToMany(relationName: "FrontendComponentAiRenderTool")
+    usedIn: [AiToolGroup] @manyToMany(relationName: "AiRenderToolAiToolGroup")
+}
+
+type AiToolGroup @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    apiTools: [AiApiTool] @manyToMany(relationName: "AiApiToolAiToolGroup")
+    renderTools: [AiRenderTool]
+        @manyToMany(relationName: "AiRenderToolAiToolGroup")
+    usedIn: [AiConfiguration]
+        @manyToMany(relationName: "AiToolGroupAiConfiguration")
 }
 
 type AiConfiguration @model @auth(rules: [{ allow: public }]) {
@@ -62,7 +91,7 @@ type AiConfiguration @model @auth(rules: [{ allow: public }]) {
     name: String!
     aiParametersID: ID! @index(name: "byAiParameters", sortKeyFields: ["id"])
     aiParameters: AiParameters @hasOne(fields: ["aiParametersID"])
-    tools: [AiTool] @manyToMany(relationName: "AiToolAiConfiguration")
+    tools: [AiToolGroup] @manyToMany(relationName: "AiToolGroupAiConfiguration")
 }
 
 type AiIndexationConfiguration @model @auth(rules: [{ allow: public }]) {
@@ -84,10 +113,9 @@ type AiWebsocket @model @auth(rules: [{ allow: public }]) {
     url: String!
 }
 
-type AiQueue @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    queryArn: String!
+enum communicationSourceType {
+    WEBSOCKET
+    BACKEND_QUEUE
 }
 
 type AiTaskTypes @model @auth(rules: [{ allow: public }]) {
@@ -102,6 +130,18 @@ type AiProcess @model @auth(rules: [{ allow: public }]) {
     taskType: AiTaskTypes @hasOne(fields: ["taskTypeID"])
     aiConfigID: ID! @index(name: "byAiConfig", sortKeyFields: ["id"])
     aiConfig: AiConfiguration @hasOne(fields: ["aiConfigID"])
+    communicationSourceType: communicationSourceType!
+    frontedWebsocketCommunicationSourceID: ID
+        @index(
+            name: "byFrontedWebsocketCommunicationSource"
+            sortKeyFields: ["id"]
+        )
+    frontedWebsocketCommunicationSource: AiWebsocket
+        @hasOne(fields: ["frontedWebsocketCommunicationSourceID"])
+    backendQueueCommunicationSourceID: ID
+        @index(name: "byBackendQueueCommunicationSource", sortKeyFields: ["id"])
+    backendQueueCommunicationSource: BackendQueue
+        @hasOne(fields: ["backendQueueCommunicationSourceID"])
     usedIn: [AiSettings] @manyToMany(relationName: "AiProcessAiSettings")
 }
 
@@ -112,20 +152,20 @@ type AiSettings @model @auth(rules: [{ allow: public }]) {
     processes: [AiProcess] @manyToMany(relationName: "AiProcessAiSettings")
 }
 
-type BackendTopic @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    arn: String!
-    usedIn: [BackendSettings]
-        @manyToMany(relationName: "BackendTopicBackendSettings")
-}
-
 type BackendQueue @model @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
     url: String!
     usedIn: [BackendSettings]
         @manyToMany(relationName: "BackendQueueBackendSettings")
+}
+
+type BackendTopic @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    arn: String!
+    usedIn: [BackendSettings]
+        @manyToMany(relationName: "BackendTopicBackendSettings")
 }
 
 type BackendDatabaseType @model @auth(rules: [{ allow: public }]) {
@@ -144,25 +184,32 @@ type BackendDatabase @model @auth(rules: [{ allow: public }]) {
         @manyToMany(relationName: "BackendDatabaseBackendSettings")
 }
 
-type BackendEndpoints @model @auth(rules: [{ allow: public }]) {
+type BackendEndpointMethod @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+}
+
+type BackendEndpoint @model @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
     url: String!
     description: String!
-    method: String!
+    methodID: ID @index(name: "byBackendEndpointMethod", sortKeyFields: ["id"])
+    method: BackendEndpointMethod @hasOne(fields: ["methodID"])
     parametersWIP: String
-    usedIn: [BackendSettings]
-        @manyToMany(relationName: "BackendEndpointsBackendSettings")
+    usedInSettings: [BackendSettings]
+        @manyToMany(relationName: "BackendEndpointBackendSettings")
+    usedInTool: [AiApiTool]
+        @manyToMany(relationName: "BackendEndpointAiApiTool")
 }
 
 type BackendSettings @model @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
     region: String!
-    version: String!
     secretName: String!
-    endpoints: [BackendEndpoints]
-        @manyToMany(relationName: "BackendEndpointsBackendSettings")
+    endpoints: [BackendEndpoint]
+        @manyToMany(relationName: "BackendEndpointBackendSettings")
     databases: [BackendDatabase]
         @manyToMany(relationName: "BackendDatabaseBackendSettings")
     queues: [BackendQueue]
@@ -171,11 +218,23 @@ type BackendSettings @model @auth(rules: [{ allow: public }]) {
         @manyToMany(relationName: "BackendTopicBackendSettings")
 }
 
+type FrontendComponent @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String!
+    description: String!
+    usedInSettings: [FrontendSettings]
+        @manyToMany(relationName: "FrontendComponentFrontendSettings")
+    usedInTool: [AiRenderTool]
+        @manyToMany(relationName: "FrontendComponentAiRenderTool")
+}
+
 type FrontendSettings @model @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
     domain: String!
     cssS3Url: String
+    components: [FrontendComponent]
+        @manyToMany(relationName: "FrontendComponentFrontendSettings")
 }
 
 type ApplicationStageCognitoUserPool @model @auth(rules: [{ allow: public }]) {
@@ -201,13 +260,26 @@ type ApplicationStage @model @auth(rules: [{ allow: public }]) {
         @hasOne(fields: ["cognitoUserPoolID"])
 }
 
-type Application @model @auth(rules: [{ allow: public }]) {
+type ApplicationAiServerSnapshotReference
+    @model
+    @auth(rules: [{ allow: public }]) {
     id: ID!
     name: String!
+}
+
+type Application @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    url: String!
+    name: String!
+    version: String!
     devStageID: ID @index(name: "byDevStage", sortKeyFields: ["id"])
     DEV: ApplicationStage @hasOne(fields: ["devStageID"])
     stagingStageID: ID @index(name: "byStagingStage", sortKeyFields: ["id"])
     STAGING: ApplicationStage @hasOne(fields: ["stagingStageID"])
     prodStageID: ID @index(name: "byProdStage", sortKeyFields: ["id"])
     PROD: ApplicationStage @hasOne(fields: ["prodStageID"])
+    aiServerSnapshotReferenceID: ID!
+        @index(name: "byAiServerSnapshotReferenceID", sortKeyFields: ["id"])
+    aiServerSnapshotReference: ApplicationAiServerSnapshotReference
+        @hasOne(fields: ["aiServerSnapshotReferenceID"])
 }
