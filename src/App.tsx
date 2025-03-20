@@ -8,7 +8,6 @@ import {
     AiClientCompanyCreateForm,
     AiClientCompanyUpdateForm,
 } from "./ui-components";
-import ApplicationList from "../src/components/FetchApplications";
 import LlmsList from "../src/components/FetchLlms";
 import "./App.css";
 
@@ -26,14 +25,8 @@ function App() {
                         <Text>Llm-s disponibles</Text>
                         <LlmsList />
                     </Card>
-                    <Card variation="outlined" className="app-card">
-                        <Text>Ajustes Actuales</Text>
-                        <ApplicationList />
-                    </Card>
-                    <AiApiToolCreateForm />
-                    <AiApiToolUpdateForm />
+
                     <AiClientCompanyCreateForm />
-                    <AiClientCompanyUpdateForm />
                     <Flex
                         direction="row"
                         justifyContent="space-between"
