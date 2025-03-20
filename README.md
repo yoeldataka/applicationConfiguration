@@ -1,3 +1,12 @@
+npx create-react-app application-config --template typescript
+amplify pull --appId d1zo18dn2gheta --envName dev
+npm i @aws-amplify/ui-react
+npm i @aws-amplify/ui-components
+npm install --save-dev @types/aws-amplify
+amplify update codegen
+
+para actualizar los ui-components --> amplify pull
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -44,10 +53,3 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-npx create-react-app application-config --template typescript
-amplify pull --appId d1zo18dn2gheta --envName dev
-npm i @aws-amplify/ui-react
-npm i @aws-amplify/ui-components
-npm install --save-dev @types/aws-amplify
-amplify update codegen

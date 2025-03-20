@@ -1,13 +1,9 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import { Amplify } from "aws-amplify";
-import { ThemeProvider } from "@aws-amplify/ui-react";
+import { ThemeProvider, Button, Card, Flex, Text } from "@aws-amplify/ui-react";
 import config from "./amplifyconfiguration.json";
-import CreateClientCompanyForm from "./components/AiClientCompanyCreationForm";
-import CreateAiLlmForm from "./components/AiLlmCreationForm";
-import CreateAiVectorizerParametersForm from "./components/AiVectorizerParametersCreationForm";
 import AiApiToolCreateForm from "./ui-components/AiApiToolCreateForm";
+import "./App.css";
 
 Amplify.configure(config);
 
@@ -16,31 +12,25 @@ function App() {
         <ThemeProvider>
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        Edit <code>src/App.tsx</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
+                    <h1>Configuración de Aplicaciones</h1>
                 </header>
-                <div className="TEST">
-                    <CreateClientCompanyForm />
-                </div>
-                <div className="TEST2">
-                    <CreateAiLlmForm />
-                </div>
-                <div className="TEST3">
-                    <CreateAiVectorizerParametersForm />
-                </div>
-                <div className="TEST4">
+                <Flex direction="column" alignItems="center" padding="20px">
+                    <Card variation="outlined" className="app-card">
+                        <Text>Ajustes Actuales</Text>
+                        {/* Aquí se mostrarían los ajustes actuales de la aplicación */}
+                    </Card>
                     <AiApiToolCreateForm />
-                </div>
+                    <Flex
+                        direction="row"
+                        justifyContent="space-between"
+                        width="100%"
+                        marginTop="20px"
+                    >
+                        <Button variation="primary">Crear</Button>
+                        <Button variation="warning">Actualizar</Button>
+                        <Button variation="link">Eliminar</Button>
+                    </Flex>
+                </Flex>
             </div>
         </ThemeProvider>
     );
