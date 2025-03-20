@@ -2,7 +2,14 @@ import React from "react";
 import { Amplify } from "aws-amplify";
 import { ThemeProvider, Button, Card, Flex, Text } from "@aws-amplify/ui-react";
 import config from "./amplifyconfiguration.json";
-import AiApiToolCreateForm from "./ui-components/AiApiToolCreateForm";
+import {
+    AiApiToolCreateForm,
+    AiApiToolUpdateForm,
+    AiClientCompanyCreateForm,
+    AiClientCompanyUpdateForm,
+} from "./ui-components";
+import ApplicationList from "../src/components/FetchApplications";
+import LlmsList from "../src/components/FetchLlms";
 import "./App.css";
 
 Amplify.configure(config);
@@ -16,10 +23,17 @@ function App() {
                 </header>
                 <Flex direction="column" alignItems="center" padding="20px">
                     <Card variation="outlined" className="app-card">
+                        <Text>Llm-s disponibles</Text>
+                        <LlmsList />
+                    </Card>
+                    <Card variation="outlined" className="app-card">
                         <Text>Ajustes Actuales</Text>
-                        {/* Aquí se mostrarían los ajustes actuales de la aplicación */}
+                        <ApplicationList />
                     </Card>
                     <AiApiToolCreateForm />
+                    <AiApiToolUpdateForm />
+                    <AiClientCompanyCreateForm />
+                    <AiClientCompanyUpdateForm />
                     <Flex
                         direction="row"
                         justifyContent="space-between"
