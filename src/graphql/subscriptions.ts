@@ -410,10 +410,26 @@ export const onCreateAiApiTool = /* GraphQL */ `subscription OnCreateAiApiTool($
     description
     payload
     endpoint {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -435,10 +451,26 @@ export const onUpdateAiApiTool = /* GraphQL */ `subscription OnUpdateAiApiTool($
     description
     payload
     endpoint {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -460,10 +492,26 @@ export const onDeleteAiApiTool = /* GraphQL */ `subscription OnDeleteAiApiTool($
     description
     payload
     endpoint {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -488,10 +536,26 @@ export const onCreateAiRenderTool = /* GraphQL */ `subscription OnCreateAiRender
     payload
     action
     component {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -516,10 +580,26 @@ export const onUpdateAiRenderTool = /* GraphQL */ `subscription OnUpdateAiRender
     payload
     action
     component {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -544,10 +624,26 @@ export const onDeleteAiRenderTool = /* GraphQL */ `subscription OnDeleteAiRender
     payload
     action
     component {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -567,14 +663,38 @@ export const onCreateAiToolGroup = /* GraphQL */ `subscription OnCreateAiToolGro
     id
     name
     apiTools {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     renderTools {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -594,14 +714,38 @@ export const onUpdateAiToolGroup = /* GraphQL */ `subscription OnUpdateAiToolGro
     id
     name
     apiTools {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     renderTools {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -621,14 +765,38 @@ export const onDeleteAiToolGroup = /* GraphQL */ `subscription OnDeleteAiToolGro
     id
     name
     apiTools {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     renderTools {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -653,11 +821,32 @@ export const onCreateAiConfiguration = /* GraphQL */ `subscription OnCreateAiCon
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -666,6 +855,14 @@ export const onCreateAiConfiguration = /* GraphQL */ `subscription OnCreateAiCon
       __typename
     }
     tools {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -690,11 +887,32 @@ export const onUpdateAiConfiguration = /* GraphQL */ `subscription OnUpdateAiCon
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -703,6 +921,14 @@ export const onUpdateAiConfiguration = /* GraphQL */ `subscription OnUpdateAiCon
       __typename
     }
     tools {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -727,11 +953,32 @@ export const onDeleteAiConfiguration = /* GraphQL */ `subscription OnDeleteAiCon
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -740,6 +987,14 @@ export const onDeleteAiConfiguration = /* GraphQL */ `subscription OnDeleteAiCon
       __typename
     }
     tools {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -763,6 +1018,18 @@ export const onCreateAiIndexationConfiguration = /* GraphQL */ `subscription OnC
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -802,6 +1069,18 @@ export const onUpdateAiIndexationConfiguration = /* GraphQL */ `subscription OnU
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -841,6 +1120,18 @@ export const onDeleteAiIndexationConfiguration = /* GraphQL */ `subscription OnD
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -980,11 +1271,40 @@ export const onCreateAiProcess = /* GraphQL */ `subscription OnCreateAiProcess($
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     usedIn {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1003,6 +1323,10 @@ export const onCreateAiProcess = /* GraphQL */ `subscription OnCreateAiProcess($
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1034,11 +1358,40 @@ export const onUpdateAiProcess = /* GraphQL */ `subscription OnUpdateAiProcess($
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     usedIn {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1057,6 +1410,10 @@ export const onUpdateAiProcess = /* GraphQL */ `subscription OnUpdateAiProcess($
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1088,11 +1445,40 @@ export const onDeleteAiProcess = /* GraphQL */ `subscription OnDeleteAiProcess($
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     usedIn {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1111,6 +1497,10 @@ export const onDeleteAiProcess = /* GraphQL */ `subscription OnDeleteAiProcess($
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1132,6 +1522,14 @@ export const onCreateAiSettings = /* GraphQL */ `subscription OnCreateAiSettings
     name
     balancerUrl
     processes {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1152,6 +1550,14 @@ export const onUpdateAiSettings = /* GraphQL */ `subscription OnUpdateAiSettings
     name
     balancerUrl
     processes {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1172,6 +1578,14 @@ export const onDeleteAiSettings = /* GraphQL */ `subscription OnDeleteAiSettings
     name
     balancerUrl
     processes {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1192,6 +1606,14 @@ export const onCreateBackendQueue = /* GraphQL */ `subscription OnCreateBackendQ
     name
     url
     usedIn {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1212,6 +1634,14 @@ export const onUpdateBackendQueue = /* GraphQL */ `subscription OnUpdateBackendQ
     name
     url
     usedIn {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1232,6 +1662,14 @@ export const onDeleteBackendQueue = /* GraphQL */ `subscription OnDeleteBackendQ
     name
     url
     usedIn {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1252,6 +1690,14 @@ export const onCreateBackendTopic = /* GraphQL */ `subscription OnCreateBackendT
     name
     arn
     usedIn {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1272,6 +1718,14 @@ export const onUpdateBackendTopic = /* GraphQL */ `subscription OnUpdateBackendT
     name
     arn
     usedIn {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1292,6 +1746,14 @@ export const onDeleteBackendTopic = /* GraphQL */ `subscription OnDeleteBackendT
     name
     arn
     usedIn {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1365,6 +1827,14 @@ export const onCreateBackendDatabase = /* GraphQL */ `subscription OnCreateBacke
     }
     reference
     usedIn {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1393,6 +1863,14 @@ export const onUpdateBackendDatabase = /* GraphQL */ `subscription OnUpdateBacke
     }
     reference
     usedIn {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1421,6 +1899,14 @@ export const onDeleteBackendDatabase = /* GraphQL */ `subscription OnDeleteBacke
     }
     reference
     usedIn {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1496,10 +1982,26 @@ export const onCreateBackendEndpoint = /* GraphQL */ `subscription OnCreateBacke
     }
     parametersWIP
     usedInSettings {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1530,10 +2032,26 @@ export const onUpdateBackendEndpoint = /* GraphQL */ `subscription OnUpdateBacke
     }
     parametersWIP
     usedInSettings {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1564,10 +2082,26 @@ export const onDeleteBackendEndpoint = /* GraphQL */ `subscription OnDeleteBacke
     }
     parametersWIP
     usedInSettings {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1589,18 +2123,50 @@ export const onCreateBackendSettings = /* GraphQL */ `subscription OnCreateBacke
     region
     secretName
     endpoints {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     databases {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     queues {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     topics {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1622,18 +2188,50 @@ export const onUpdateBackendSettings = /* GraphQL */ `subscription OnUpdateBacke
     region
     secretName
     endpoints {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     databases {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     queues {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     topics {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1655,18 +2253,50 @@ export const onDeleteBackendSettings = /* GraphQL */ `subscription OnDeleteBacke
     region
     secretName
     endpoints {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     databases {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     queues {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     topics {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1687,10 +2317,26 @@ export const onCreateFrontendComponent = /* GraphQL */ `subscription OnCreateFro
     name
     description
     usedInSettings {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1711,10 +2357,26 @@ export const onUpdateFrontendComponent = /* GraphQL */ `subscription OnUpdateFro
     name
     description
     usedInSettings {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1735,10 +2397,26 @@ export const onDeleteFrontendComponent = /* GraphQL */ `subscription OnDeleteFro
     name
     description
     usedInSettings {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1760,6 +2438,14 @@ export const onCreateFrontendSettings = /* GraphQL */ `subscription OnCreateFron
     domain
     cssS3Url
     components {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1781,6 +2467,14 @@ export const onUpdateFrontendSettings = /* GraphQL */ `subscription OnUpdateFron
     domain
     cssS3Url
     components {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1802,6 +2496,14 @@ export const onDeleteFrontendSettings = /* GraphQL */ `subscription OnDeleteFron
     domain
     cssS3Url
     components {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1873,6 +2575,10 @@ export const onCreateApplicationStage = /* GraphQL */ `subscription OnCreateAppl
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1883,6 +2589,22 @@ export const onCreateApplicationStage = /* GraphQL */ `subscription OnCreateAppl
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1893,6 +2615,10 @@ export const onCreateApplicationStage = /* GraphQL */ `subscription OnCreateAppl
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1926,6 +2652,10 @@ export const onUpdateApplicationStage = /* GraphQL */ `subscription OnUpdateAppl
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1936,6 +2666,22 @@ export const onUpdateApplicationStage = /* GraphQL */ `subscription OnUpdateAppl
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1946,6 +2692,10 @@ export const onUpdateApplicationStage = /* GraphQL */ `subscription OnUpdateAppl
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1979,6 +2729,10 @@ export const onDeleteApplicationStage = /* GraphQL */ `subscription OnDeleteAppl
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1989,6 +2743,22 @@ export const onDeleteApplicationStage = /* GraphQL */ `subscription OnDeleteAppl
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1999,6 +2769,10 @@ export const onDeleteApplicationStage = /* GraphQL */ `subscription OnDeleteAppl
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2079,9 +2853,43 @@ export const onCreateApplication = /* GraphQL */ `subscription OnCreateApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2091,9 +2899,43 @@ export const onCreateApplication = /* GraphQL */ `subscription OnCreateApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2103,9 +2945,43 @@ export const onCreateApplication = /* GraphQL */ `subscription OnCreateApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2140,9 +3016,43 @@ export const onUpdateApplication = /* GraphQL */ `subscription OnUpdateApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2152,9 +3062,43 @@ export const onUpdateApplication = /* GraphQL */ `subscription OnUpdateApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2164,9 +3108,43 @@ export const onUpdateApplication = /* GraphQL */ `subscription OnUpdateApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2201,9 +3179,43 @@ export const onDeleteApplication = /* GraphQL */ `subscription OnDeleteApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2213,9 +3225,43 @@ export const onDeleteApplication = /* GraphQL */ `subscription OnDeleteApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2225,9 +3271,43 @@ export const onDeleteApplication = /* GraphQL */ `subscription OnDeleteApplicati
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2263,6 +3343,14 @@ export const onCreateBackendEndpointAiApiTool = /* GraphQL */ `subscription OnCr
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2273,7 +3361,22 @@ export const onCreateBackendEndpointAiApiTool = /* GraphQL */ `subscription OnCr
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2301,6 +3404,14 @@ export const onUpdateBackendEndpointAiApiTool = /* GraphQL */ `subscription OnUp
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2311,7 +3422,22 @@ export const onUpdateBackendEndpointAiApiTool = /* GraphQL */ `subscription OnUp
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2339,6 +3465,14 @@ export const onDeleteBackendEndpointAiApiTool = /* GraphQL */ `subscription OnDe
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2349,7 +3483,22 @@ export const onDeleteBackendEndpointAiApiTool = /* GraphQL */ `subscription OnDe
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2377,6 +3526,14 @@ export const onCreateAiApiToolAiToolGroup = /* GraphQL */ `subscription OnCreate
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2384,6 +3541,18 @@ export const onCreateAiApiToolAiToolGroup = /* GraphQL */ `subscription OnCreate
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2411,6 +3580,14 @@ export const onUpdateAiApiToolAiToolGroup = /* GraphQL */ `subscription OnUpdate
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2418,6 +3595,18 @@ export const onUpdateAiApiToolAiToolGroup = /* GraphQL */ `subscription OnUpdate
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2445,6 +3634,14 @@ export const onDeleteAiApiToolAiToolGroup = /* GraphQL */ `subscription OnDelete
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2452,6 +3649,18 @@ export const onDeleteAiApiToolAiToolGroup = /* GraphQL */ `subscription OnDelete
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2480,6 +3689,14 @@ export const onCreateFrontendComponentAiRenderTool = /* GraphQL */ `subscription
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2488,6 +3705,14 @@ export const onCreateFrontendComponentAiRenderTool = /* GraphQL */ `subscription
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2516,6 +3741,14 @@ export const onUpdateFrontendComponentAiRenderTool = /* GraphQL */ `subscription
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2524,6 +3757,14 @@ export const onUpdateFrontendComponentAiRenderTool = /* GraphQL */ `subscription
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2552,6 +3793,14 @@ export const onDeleteFrontendComponentAiRenderTool = /* GraphQL */ `subscription
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2560,6 +3809,14 @@ export const onDeleteFrontendComponentAiRenderTool = /* GraphQL */ `subscription
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2588,6 +3845,14 @@ export const onCreateAiRenderToolAiToolGroup = /* GraphQL */ `subscription OnCre
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2595,6 +3860,18 @@ export const onCreateAiRenderToolAiToolGroup = /* GraphQL */ `subscription OnCre
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2623,6 +3900,14 @@ export const onUpdateAiRenderToolAiToolGroup = /* GraphQL */ `subscription OnUpd
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2630,6 +3915,18 @@ export const onUpdateAiRenderToolAiToolGroup = /* GraphQL */ `subscription OnUpd
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2658,6 +3955,14 @@ export const onDeleteAiRenderToolAiToolGroup = /* GraphQL */ `subscription OnDel
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2665,6 +3970,18 @@ export const onDeleteAiRenderToolAiToolGroup = /* GraphQL */ `subscription OnDel
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2688,6 +4005,18 @@ export const onCreateAiToolGroupAiConfiguration = /* GraphQL */ `subscription On
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2696,6 +4025,27 @@ export const onCreateAiToolGroupAiConfiguration = /* GraphQL */ `subscription On
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2719,6 +4069,18 @@ export const onUpdateAiToolGroupAiConfiguration = /* GraphQL */ `subscription On
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2727,6 +4089,27 @@ export const onUpdateAiToolGroupAiConfiguration = /* GraphQL */ `subscription On
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2750,6 +4133,18 @@ export const onDeleteAiToolGroupAiConfiguration = /* GraphQL */ `subscription On
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2758,6 +4153,27 @@ export const onDeleteAiToolGroupAiConfiguration = /* GraphQL */ `subscription On
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2783,10 +4199,45 @@ export const onCreateAiProcessAiSettings = /* GraphQL */ `subscription OnCreateA
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2795,6 +4246,10 @@ export const onCreateAiProcessAiSettings = /* GraphQL */ `subscription OnCreateA
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2820,10 +4275,45 @@ export const onUpdateAiProcessAiSettings = /* GraphQL */ `subscription OnUpdateA
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2832,6 +4322,10 @@ export const onUpdateAiProcessAiSettings = /* GraphQL */ `subscription OnUpdateA
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2857,10 +4351,45 @@ export const onDeleteAiProcessAiSettings = /* GraphQL */ `subscription OnDeleteA
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2869,6 +4398,10 @@ export const onDeleteAiProcessAiSettings = /* GraphQL */ `subscription OnDeleteA
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2893,6 +4426,10 @@ export const onCreateBackendQueueBackendSettings = /* GraphQL */ `subscription O
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2902,6 +4439,22 @@ export const onCreateBackendQueueBackendSettings = /* GraphQL */ `subscription O
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2926,6 +4479,10 @@ export const onUpdateBackendQueueBackendSettings = /* GraphQL */ `subscription O
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2935,6 +4492,22 @@ export const onUpdateBackendQueueBackendSettings = /* GraphQL */ `subscription O
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2959,6 +4532,10 @@ export const onDeleteBackendQueueBackendSettings = /* GraphQL */ `subscription O
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2968,6 +4545,22 @@ export const onDeleteBackendQueueBackendSettings = /* GraphQL */ `subscription O
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2992,6 +4585,10 @@ export const onCreateBackendTopicBackendSettings = /* GraphQL */ `subscription O
       id
       name
       arn
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3001,6 +4598,22 @@ export const onCreateBackendTopicBackendSettings = /* GraphQL */ `subscription O
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3025,6 +4638,10 @@ export const onUpdateBackendTopicBackendSettings = /* GraphQL */ `subscription O
       id
       name
       arn
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3034,6 +4651,22 @@ export const onUpdateBackendTopicBackendSettings = /* GraphQL */ `subscription O
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3058,6 +4691,10 @@ export const onDeleteBackendTopicBackendSettings = /* GraphQL */ `subscription O
       id
       name
       arn
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3067,6 +4704,22 @@ export const onDeleteBackendTopicBackendSettings = /* GraphQL */ `subscription O
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3091,7 +4744,18 @@ export const onCreateBackendDatabaseBackendSettings = /* GraphQL */ `subscriptio
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3101,6 +4765,22 @@ export const onCreateBackendDatabaseBackendSettings = /* GraphQL */ `subscriptio
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3125,7 +4805,18 @@ export const onUpdateBackendDatabaseBackendSettings = /* GraphQL */ `subscriptio
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3135,6 +4826,22 @@ export const onUpdateBackendDatabaseBackendSettings = /* GraphQL */ `subscriptio
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3159,7 +4866,18 @@ export const onDeleteBackendDatabaseBackendSettings = /* GraphQL */ `subscriptio
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3169,6 +4887,22 @@ export const onDeleteBackendDatabaseBackendSettings = /* GraphQL */ `subscriptio
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3195,7 +4929,22 @@ export const onCreateBackendEndpointBackendSettings = /* GraphQL */ `subscriptio
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3205,6 +4954,22 @@ export const onCreateBackendEndpointBackendSettings = /* GraphQL */ `subscriptio
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3231,7 +4996,22 @@ export const onUpdateBackendEndpointBackendSettings = /* GraphQL */ `subscriptio
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3241,6 +5021,22 @@ export const onUpdateBackendEndpointBackendSettings = /* GraphQL */ `subscriptio
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3267,7 +5063,22 @@ export const onDeleteBackendEndpointBackendSettings = /* GraphQL */ `subscriptio
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3277,6 +5088,22 @@ export const onDeleteBackendEndpointBackendSettings = /* GraphQL */ `subscriptio
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3301,6 +5128,14 @@ export const onCreateFrontendComponentFrontendSettings = /* GraphQL */ `subscrip
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3310,6 +5145,10 @@ export const onCreateFrontendComponentFrontendSettings = /* GraphQL */ `subscrip
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3334,6 +5173,14 @@ export const onUpdateFrontendComponentFrontendSettings = /* GraphQL */ `subscrip
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3343,6 +5190,10 @@ export const onUpdateFrontendComponentFrontendSettings = /* GraphQL */ `subscrip
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3367,6 +5218,14 @@ export const onDeleteFrontendComponentFrontendSettings = /* GraphQL */ `subscrip
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3376,6 +5235,10 @@ export const onDeleteFrontendComponentFrontendSettings = /* GraphQL */ `subscrip
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename

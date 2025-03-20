@@ -434,10 +434,26 @@ export const createAiApiTool = /* GraphQL */ `mutation CreateAiApiTool(
     description
     payload
     endpoint {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -462,10 +478,26 @@ export const updateAiApiTool = /* GraphQL */ `mutation UpdateAiApiTool(
     description
     payload
     endpoint {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -490,10 +522,26 @@ export const deleteAiApiTool = /* GraphQL */ `mutation DeleteAiApiTool(
     description
     payload
     endpoint {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -519,10 +567,26 @@ export const createAiRenderTool = /* GraphQL */ `mutation CreateAiRenderTool(
     payload
     action
     component {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -548,10 +612,26 @@ export const updateAiRenderTool = /* GraphQL */ `mutation UpdateAiRenderTool(
     payload
     action
     component {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -577,10 +657,26 @@ export const deleteAiRenderTool = /* GraphQL */ `mutation DeleteAiRenderTool(
     payload
     action
     component {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -601,14 +697,38 @@ export const createAiToolGroup = /* GraphQL */ `mutation CreateAiToolGroup(
     id
     name
     apiTools {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     renderTools {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -629,14 +749,38 @@ export const updateAiToolGroup = /* GraphQL */ `mutation UpdateAiToolGroup(
     id
     name
     apiTools {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     renderTools {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -657,14 +801,38 @@ export const deleteAiToolGroup = /* GraphQL */ `mutation DeleteAiToolGroup(
     id
     name
     apiTools {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     renderTools {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -690,11 +858,32 @@ export const createAiConfiguration = /* GraphQL */ `mutation CreateAiConfigurati
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -703,6 +892,14 @@ export const createAiConfiguration = /* GraphQL */ `mutation CreateAiConfigurati
       __typename
     }
     tools {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -728,11 +925,32 @@ export const updateAiConfiguration = /* GraphQL */ `mutation UpdateAiConfigurati
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -741,6 +959,14 @@ export const updateAiConfiguration = /* GraphQL */ `mutation UpdateAiConfigurati
       __typename
     }
     tools {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -766,11 +992,32 @@ export const deleteAiConfiguration = /* GraphQL */ `mutation DeleteAiConfigurati
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -779,6 +1026,14 @@ export const deleteAiConfiguration = /* GraphQL */ `mutation DeleteAiConfigurati
       __typename
     }
     tools {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -803,6 +1058,18 @@ export const createAiIndexationConfiguration = /* GraphQL */ `mutation CreateAiI
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -843,6 +1110,18 @@ export const updateAiIndexationConfiguration = /* GraphQL */ `mutation UpdateAiI
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -883,6 +1162,18 @@ export const deleteAiIndexationConfiguration = /* GraphQL */ `mutation DeleteAiI
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -1031,11 +1322,40 @@ export const createAiProcess = /* GraphQL */ `mutation CreateAiProcess(
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     usedIn {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1054,6 +1374,10 @@ export const createAiProcess = /* GraphQL */ `mutation CreateAiProcess(
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1088,11 +1412,40 @@ export const updateAiProcess = /* GraphQL */ `mutation UpdateAiProcess(
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     usedIn {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1111,6 +1464,10 @@ export const updateAiProcess = /* GraphQL */ `mutation UpdateAiProcess(
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1145,11 +1502,40 @@ export const deleteAiProcess = /* GraphQL */ `mutation DeleteAiProcess(
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     usedIn {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1168,6 +1554,10 @@ export const deleteAiProcess = /* GraphQL */ `mutation DeleteAiProcess(
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1190,6 +1580,14 @@ export const createAiSettings = /* GraphQL */ `mutation CreateAiSettings(
     name
     balancerUrl
     processes {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1211,6 +1609,14 @@ export const updateAiSettings = /* GraphQL */ `mutation UpdateAiSettings(
     name
     balancerUrl
     processes {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1232,6 +1638,14 @@ export const deleteAiSettings = /* GraphQL */ `mutation DeleteAiSettings(
     name
     balancerUrl
     processes {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1253,6 +1667,14 @@ export const createBackendQueue = /* GraphQL */ `mutation CreateBackendQueue(
     name
     url
     usedIn {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1274,6 +1696,14 @@ export const updateBackendQueue = /* GraphQL */ `mutation UpdateBackendQueue(
     name
     url
     usedIn {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1295,6 +1725,14 @@ export const deleteBackendQueue = /* GraphQL */ `mutation DeleteBackendQueue(
     name
     url
     usedIn {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1316,6 +1754,14 @@ export const createBackendTopic = /* GraphQL */ `mutation CreateBackendTopic(
     name
     arn
     usedIn {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1337,6 +1783,14 @@ export const updateBackendTopic = /* GraphQL */ `mutation UpdateBackendTopic(
     name
     arn
     usedIn {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1358,6 +1812,14 @@ export const deleteBackendTopic = /* GraphQL */ `mutation DeleteBackendTopic(
     name
     arn
     usedIn {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1435,6 +1897,14 @@ export const createBackendDatabase = /* GraphQL */ `mutation CreateBackendDataba
     }
     reference
     usedIn {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1464,6 +1934,14 @@ export const updateBackendDatabase = /* GraphQL */ `mutation UpdateBackendDataba
     }
     reference
     usedIn {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1493,6 +1971,14 @@ export const deleteBackendDatabase = /* GraphQL */ `mutation DeleteBackendDataba
     }
     reference
     usedIn {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1572,10 +2058,26 @@ export const createBackendEndpoint = /* GraphQL */ `mutation CreateBackendEndpoi
     }
     parametersWIP
     usedInSettings {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1607,10 +2109,26 @@ export const updateBackendEndpoint = /* GraphQL */ `mutation UpdateBackendEndpoi
     }
     parametersWIP
     usedInSettings {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1642,10 +2160,26 @@ export const deleteBackendEndpoint = /* GraphQL */ `mutation DeleteBackendEndpoi
     }
     parametersWIP
     usedInSettings {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1668,18 +2202,50 @@ export const createBackendSettings = /* GraphQL */ `mutation CreateBackendSettin
     region
     secretName
     endpoints {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     databases {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     queues {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     topics {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1702,18 +2268,50 @@ export const updateBackendSettings = /* GraphQL */ `mutation UpdateBackendSettin
     region
     secretName
     endpoints {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     databases {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     queues {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     topics {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1736,18 +2334,50 @@ export const deleteBackendSettings = /* GraphQL */ `mutation DeleteBackendSettin
     region
     secretName
     endpoints {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     databases {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     queues {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     topics {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1769,10 +2399,26 @@ export const createFrontendComponent = /* GraphQL */ `mutation CreateFrontendCom
     name
     description
     usedInSettings {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1794,10 +2440,26 @@ export const updateFrontendComponent = /* GraphQL */ `mutation UpdateFrontendCom
     name
     description
     usedInSettings {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1819,10 +2481,26 @@ export const deleteFrontendComponent = /* GraphQL */ `mutation DeleteFrontendCom
     name
     description
     usedInSettings {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1845,6 +2523,14 @@ export const createFrontendSettings = /* GraphQL */ `mutation CreateFrontendSett
     domain
     cssS3Url
     components {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1867,6 +2553,14 @@ export const updateFrontendSettings = /* GraphQL */ `mutation UpdateFrontendSett
     domain
     cssS3Url
     components {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1889,6 +2583,14 @@ export const deleteFrontendSettings = /* GraphQL */ `mutation DeleteFrontendSett
     domain
     cssS3Url
     components {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1964,6 +2666,10 @@ export const createApplicationStage = /* GraphQL */ `mutation CreateApplicationS
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1974,6 +2680,22 @@ export const createApplicationStage = /* GraphQL */ `mutation CreateApplicationS
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1984,6 +2706,10 @@ export const createApplicationStage = /* GraphQL */ `mutation CreateApplicationS
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2018,6 +2744,10 @@ export const updateApplicationStage = /* GraphQL */ `mutation UpdateApplicationS
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2028,6 +2758,22 @@ export const updateApplicationStage = /* GraphQL */ `mutation UpdateApplicationS
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2038,6 +2784,10 @@ export const updateApplicationStage = /* GraphQL */ `mutation UpdateApplicationS
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2072,6 +2822,10 @@ export const deleteApplicationStage = /* GraphQL */ `mutation DeleteApplicationS
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2082,6 +2836,22 @@ export const deleteApplicationStage = /* GraphQL */ `mutation DeleteApplicationS
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2092,6 +2862,10 @@ export const deleteApplicationStage = /* GraphQL */ `mutation DeleteApplicationS
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2185,9 +2959,43 @@ export const createApplication = /* GraphQL */ `mutation CreateApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2197,9 +3005,43 @@ export const createApplication = /* GraphQL */ `mutation CreateApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2209,9 +3051,43 @@ export const createApplication = /* GraphQL */ `mutation CreateApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2247,9 +3123,43 @@ export const updateApplication = /* GraphQL */ `mutation UpdateApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2259,9 +3169,43 @@ export const updateApplication = /* GraphQL */ `mutation UpdateApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2271,9 +3215,43 @@ export const updateApplication = /* GraphQL */ `mutation UpdateApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2309,9 +3287,43 @@ export const deleteApplication = /* GraphQL */ `mutation DeleteApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2321,9 +3333,43 @@ export const deleteApplication = /* GraphQL */ `mutation DeleteApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2333,9 +3379,43 @@ export const deleteApplication = /* GraphQL */ `mutation DeleteApplication(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2372,6 +3452,14 @@ export const createBackendEndpointAiApiTool = /* GraphQL */ `mutation CreateBack
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2382,7 +3470,22 @@ export const createBackendEndpointAiApiTool = /* GraphQL */ `mutation CreateBack
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2411,6 +3514,14 @@ export const updateBackendEndpointAiApiTool = /* GraphQL */ `mutation UpdateBack
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2421,7 +3532,22 @@ export const updateBackendEndpointAiApiTool = /* GraphQL */ `mutation UpdateBack
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2450,6 +3576,14 @@ export const deleteBackendEndpointAiApiTool = /* GraphQL */ `mutation DeleteBack
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2460,7 +3594,22 @@ export const deleteBackendEndpointAiApiTool = /* GraphQL */ `mutation DeleteBack
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2489,6 +3638,14 @@ export const createAiApiToolAiToolGroup = /* GraphQL */ `mutation CreateAiApiToo
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2496,6 +3653,18 @@ export const createAiApiToolAiToolGroup = /* GraphQL */ `mutation CreateAiApiToo
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2524,6 +3693,14 @@ export const updateAiApiToolAiToolGroup = /* GraphQL */ `mutation UpdateAiApiToo
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2531,6 +3708,18 @@ export const updateAiApiToolAiToolGroup = /* GraphQL */ `mutation UpdateAiApiToo
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2559,6 +3748,14 @@ export const deleteAiApiToolAiToolGroup = /* GraphQL */ `mutation DeleteAiApiToo
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2566,6 +3763,18 @@ export const deleteAiApiToolAiToolGroup = /* GraphQL */ `mutation DeleteAiApiToo
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2595,6 +3804,14 @@ export const createFrontendComponentAiRenderTool = /* GraphQL */ `mutation Creat
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2603,6 +3820,14 @@ export const createFrontendComponentAiRenderTool = /* GraphQL */ `mutation Creat
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2632,6 +3857,14 @@ export const updateFrontendComponentAiRenderTool = /* GraphQL */ `mutation Updat
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2640,6 +3873,14 @@ export const updateFrontendComponentAiRenderTool = /* GraphQL */ `mutation Updat
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2669,6 +3910,14 @@ export const deleteFrontendComponentAiRenderTool = /* GraphQL */ `mutation Delet
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2677,6 +3926,14 @@ export const deleteFrontendComponentAiRenderTool = /* GraphQL */ `mutation Delet
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2706,6 +3963,14 @@ export const createAiRenderToolAiToolGroup = /* GraphQL */ `mutation CreateAiRen
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2713,6 +3978,18 @@ export const createAiRenderToolAiToolGroup = /* GraphQL */ `mutation CreateAiRen
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2742,6 +4019,14 @@ export const updateAiRenderToolAiToolGroup = /* GraphQL */ `mutation UpdateAiRen
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2749,6 +4034,18 @@ export const updateAiRenderToolAiToolGroup = /* GraphQL */ `mutation UpdateAiRen
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2778,6 +4075,14 @@ export const deleteAiRenderToolAiToolGroup = /* GraphQL */ `mutation DeleteAiRen
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2785,6 +4090,18 @@ export const deleteAiRenderToolAiToolGroup = /* GraphQL */ `mutation DeleteAiRen
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2809,6 +4126,18 @@ export const createAiToolGroupAiConfiguration = /* GraphQL */ `mutation CreateAi
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2817,6 +4146,27 @@ export const createAiToolGroupAiConfiguration = /* GraphQL */ `mutation CreateAi
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2841,6 +4191,18 @@ export const updateAiToolGroupAiConfiguration = /* GraphQL */ `mutation UpdateAi
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2849,6 +4211,27 @@ export const updateAiToolGroupAiConfiguration = /* GraphQL */ `mutation UpdateAi
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2873,6 +4256,18 @@ export const deleteAiToolGroupAiConfiguration = /* GraphQL */ `mutation DeleteAi
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2881,6 +4276,27 @@ export const deleteAiToolGroupAiConfiguration = /* GraphQL */ `mutation DeleteAi
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2907,10 +4323,45 @@ export const createAiProcessAiSettings = /* GraphQL */ `mutation CreateAiProcess
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2919,6 +4370,10 @@ export const createAiProcessAiSettings = /* GraphQL */ `mutation CreateAiProcess
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2945,10 +4400,45 @@ export const updateAiProcessAiSettings = /* GraphQL */ `mutation UpdateAiProcess
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2957,6 +4447,10 @@ export const updateAiProcessAiSettings = /* GraphQL */ `mutation UpdateAiProcess
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2983,10 +4477,45 @@ export const deleteAiProcessAiSettings = /* GraphQL */ `mutation DeleteAiProcess
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2995,6 +4524,10 @@ export const deleteAiProcessAiSettings = /* GraphQL */ `mutation DeleteAiProcess
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3020,6 +4553,10 @@ export const createBackendQueueBackendSettings = /* GraphQL */ `mutation CreateB
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3029,6 +4566,22 @@ export const createBackendQueueBackendSettings = /* GraphQL */ `mutation CreateB
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3054,6 +4607,10 @@ export const updateBackendQueueBackendSettings = /* GraphQL */ `mutation UpdateB
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3063,6 +4620,22 @@ export const updateBackendQueueBackendSettings = /* GraphQL */ `mutation UpdateB
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3088,6 +4661,10 @@ export const deleteBackendQueueBackendSettings = /* GraphQL */ `mutation DeleteB
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3097,6 +4674,22 @@ export const deleteBackendQueueBackendSettings = /* GraphQL */ `mutation DeleteB
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3122,6 +4715,10 @@ export const createBackendTopicBackendSettings = /* GraphQL */ `mutation CreateB
       id
       name
       arn
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3131,6 +4728,22 @@ export const createBackendTopicBackendSettings = /* GraphQL */ `mutation CreateB
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3156,6 +4769,10 @@ export const updateBackendTopicBackendSettings = /* GraphQL */ `mutation UpdateB
       id
       name
       arn
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3165,6 +4782,22 @@ export const updateBackendTopicBackendSettings = /* GraphQL */ `mutation UpdateB
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3190,6 +4823,10 @@ export const deleteBackendTopicBackendSettings = /* GraphQL */ `mutation DeleteB
       id
       name
       arn
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3199,6 +4836,22 @@ export const deleteBackendTopicBackendSettings = /* GraphQL */ `mutation DeleteB
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3224,7 +4877,18 @@ export const createBackendDatabaseBackendSettings = /* GraphQL */ `mutation Crea
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3234,6 +4898,22 @@ export const createBackendDatabaseBackendSettings = /* GraphQL */ `mutation Crea
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3259,7 +4939,18 @@ export const updateBackendDatabaseBackendSettings = /* GraphQL */ `mutation Upda
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3269,6 +4960,22 @@ export const updateBackendDatabaseBackendSettings = /* GraphQL */ `mutation Upda
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3294,7 +5001,18 @@ export const deleteBackendDatabaseBackendSettings = /* GraphQL */ `mutation Dele
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3304,6 +5022,22 @@ export const deleteBackendDatabaseBackendSettings = /* GraphQL */ `mutation Dele
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3331,7 +5065,22 @@ export const createBackendEndpointBackendSettings = /* GraphQL */ `mutation Crea
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3341,6 +5090,22 @@ export const createBackendEndpointBackendSettings = /* GraphQL */ `mutation Crea
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3368,7 +5133,22 @@ export const updateBackendEndpointBackendSettings = /* GraphQL */ `mutation Upda
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3378,6 +5158,22 @@ export const updateBackendEndpointBackendSettings = /* GraphQL */ `mutation Upda
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3405,7 +5201,22 @@ export const deleteBackendEndpointBackendSettings = /* GraphQL */ `mutation Dele
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3415,6 +5226,22 @@ export const deleteBackendEndpointBackendSettings = /* GraphQL */ `mutation Dele
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3443,6 +5270,14 @@ export const createFrontendComponentFrontendSettings = /* GraphQL */ `mutation C
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3452,6 +5287,10 @@ export const createFrontendComponentFrontendSettings = /* GraphQL */ `mutation C
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3480,6 +5319,14 @@ export const updateFrontendComponentFrontendSettings = /* GraphQL */ `mutation U
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3489,6 +5336,10 @@ export const updateFrontendComponentFrontendSettings = /* GraphQL */ `mutation U
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3517,6 +5368,14 @@ export const deleteFrontendComponentFrontendSettings = /* GraphQL */ `mutation D
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3526,6 +5385,10 @@ export const deleteFrontendComponentFrontendSettings = /* GraphQL */ `mutation D
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename

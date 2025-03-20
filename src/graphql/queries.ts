@@ -177,6 +177,18 @@ export const listAiVectorizerParameters = /* GraphQL */ `query ListAiVectorizerP
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -211,6 +223,18 @@ export const aiVectorizerParametersByAiLlmIDAndId = /* GraphQL */ `query AiVecto
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -280,11 +304,32 @@ export const listAiParameters = /* GraphQL */ `query ListAiParameters(
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -321,11 +366,32 @@ export const aiParametersByCompanyIDAndId = /* GraphQL */ `query AiParametersByC
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -362,11 +428,32 @@ export const aiParametersByLlmIDAndId = /* GraphQL */ `query AiParametersByLlmID
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -391,10 +478,26 @@ export const getAiApiTool = /* GraphQL */ `query GetAiApiTool($id: ID!) {
     description
     payload
     endpoint {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -420,6 +523,14 @@ export const listAiApiTools = /* GraphQL */ `query ListAiApiTools(
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -442,10 +553,26 @@ export const getAiRenderTool = /* GraphQL */ `query GetAiRenderTool($id: ID!) {
     payload
     action
     component {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -472,6 +599,14 @@ export const listAiRenderTools = /* GraphQL */ `query ListAiRenderTools(
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -489,14 +624,38 @@ export const getAiToolGroup = /* GraphQL */ `query GetAiToolGroup($id: ID!) {
     id
     name
     apiTools {
+      items {
+        id
+        aiApiToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     renderTools {
+      items {
+        id
+        aiRenderToolId
+        aiToolGroupId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedIn {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -518,6 +677,18 @@ export const listAiToolGroups = /* GraphQL */ `query ListAiToolGroups(
     items {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -540,11 +711,32 @@ export const getAiConfiguration = /* GraphQL */ `query GetAiConfiguration($id: I
       name
       role
       companyID
+      company {
+        id
+        name
+        business
+        values
+        createdAt
+        updatedAt
+        __typename
+      }
       conversationPurpose
       conversationType
       prePrompt
       postPrompt
       llmID
+      llm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chatMemory
       responseTemperature
       responseLanguage
@@ -553,6 +745,14 @@ export const getAiConfiguration = /* GraphQL */ `query GetAiConfiguration($id: I
       __typename
     }
     tools {
+      items {
+        id
+        aiToolGroupId
+        aiConfigurationId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -575,6 +775,27 @@ export const listAiConfigurations = /* GraphQL */ `query ListAiConfigurations(
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -607,6 +828,27 @@ export const aiConfigurationsByAiParametersIDAndId = /* GraphQL */ `query AiConf
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -628,6 +870,18 @@ export const getAiIndexationConfiguration = /* GraphQL */ `query GetAiIndexation
       id
       name
       aiLlmID
+      aiLlm {
+        id
+        name
+        input
+        output
+        description
+        available
+        maxTokens
+        createdAt
+        updatedAt
+        __typename
+      }
       chunkSize
       chunkOverlap
       createdAt
@@ -670,7 +924,29 @@ export const listAiIndexationConfigurations = /* GraphQL */ `query ListAiIndexat
       id
       name
       vectorizerParametersID
+      vectorizerParameters {
+        id
+        name
+        aiLlmID
+        chunkSize
+        chunkOverlap
+        createdAt
+        updatedAt
+        __typename
+      }
       vectorialDbConfigID
+      vectorialDbConfig {
+        id
+        name
+        apiKey
+        indexName
+        nameSpace
+        score
+        numberOfSimilarities
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -703,7 +979,29 @@ export const aiIndexationConfigurationsByVectorizerParametersIDAndId = /* GraphQ
       id
       name
       vectorizerParametersID
+      vectorizerParameters {
+        id
+        name
+        aiLlmID
+        chunkSize
+        chunkOverlap
+        createdAt
+        updatedAt
+        __typename
+      }
       vectorialDbConfigID
+      vectorialDbConfig {
+        id
+        name
+        apiKey
+        indexName
+        nameSpace
+        score
+        numberOfSimilarities
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -736,7 +1034,29 @@ export const aiIndexationConfigurationsByVectorialDbConfigIDAndId = /* GraphQL *
       id
       name
       vectorizerParametersID
+      vectorizerParameters {
+        id
+        name
+        aiLlmID
+        chunkSize
+        chunkOverlap
+        createdAt
+        updatedAt
+        __typename
+      }
       vectorialDbConfigID
+      vectorialDbConfig {
+        id
+        name
+        apiKey
+        indexName
+        nameSpace
+        score
+        numberOfSimilarities
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -837,11 +1157,40 @@ export const getAiProcess = /* GraphQL */ `query GetAiProcess($id: ID!) {
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     usedIn {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -860,6 +1209,10 @@ export const getAiProcess = /* GraphQL */ `query GetAiProcess($id: ID!) {
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -884,10 +1237,45 @@ export const listAiProcesses = /* GraphQL */ `query ListAiProcesses(
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -921,10 +1309,45 @@ export const aiProcessesByTaskTypeIDAndId = /* GraphQL */ `query AiProcessesByTa
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -958,10 +1381,45 @@ export const aiProcessesByAiConfigIDAndId = /* GraphQL */ `query AiProcessesByAi
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -995,10 +1453,45 @@ export const aiProcessesByFrontedWebsocketCommunicationSourceIDAndId = /* GraphQ
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1032,10 +1525,45 @@ export const aiProcessesByBackendQueueCommunicationSourceIDAndId = /* GraphQL */
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1054,6 +1582,14 @@ export const getAiSettings = /* GraphQL */ `query GetAiSettings($id: ID!) {
     name
     balancerUrl
     processes {
+      items {
+        id
+        aiProcessId
+        aiSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1076,6 +1612,10 @@ export const listAiSettings = /* GraphQL */ `query ListAiSettings(
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1094,6 +1634,14 @@ export const getBackendQueue = /* GraphQL */ `query GetBackendQueue($id: ID!) {
     name
     url
     usedIn {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1116,6 +1664,10 @@ export const listBackendQueues = /* GraphQL */ `query ListBackendQueues(
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1134,6 +1686,14 @@ export const getBackendTopic = /* GraphQL */ `query GetBackendTopic($id: ID!) {
     name
     arn
     usedIn {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1156,6 +1716,10 @@ export const listBackendTopics = /* GraphQL */ `query ListBackendTopics(
       id
       name
       arn
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1220,6 +1784,14 @@ export const getBackendDatabase = /* GraphQL */ `query GetBackendDatabase($id: I
     }
     reference
     usedIn {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1242,7 +1814,18 @@ export const listBackendDatabases = /* GraphQL */ `query ListBackendDatabases(
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1275,7 +1858,18 @@ export const backendDatabasesByBackendDatabaseTypeIDAndId = /* GraphQL */ `query
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1342,10 +1936,26 @@ export const getBackendEndpoint = /* GraphQL */ `query GetBackendEndpoint($id: I
     }
     parametersWIP
     usedInSettings {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiApiToolId
+        backendEndpointId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1370,7 +1980,22 @@ export const listBackendEndpoints = /* GraphQL */ `query ListBackendEndpoints(
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1405,7 +2030,22 @@ export const backendEndpointsByMethodIDAndId = /* GraphQL */ `query BackendEndpo
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1425,18 +2065,50 @@ export const getBackendSettings = /* GraphQL */ `query GetBackendSettings($id: I
     region
     secretName
     endpoints {
+      items {
+        id
+        backendEndpointId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     databases {
+      items {
+        id
+        backendDatabaseId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     queues {
+      items {
+        id
+        backendQueueId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     topics {
+      items {
+        id
+        backendTopicId
+        backendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1460,6 +2132,22 @@ export const listBackendSettings = /* GraphQL */ `query ListBackendSettings(
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1478,10 +2166,26 @@ export const getFrontendComponent = /* GraphQL */ `query GetFrontendComponent($i
     name
     description
     usedInSettings {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     usedInTool {
+      items {
+        id
+        aiRenderToolId
+        frontendComponentId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1508,6 +2212,14 @@ export const listFrontendComponents = /* GraphQL */ `query ListFrontendComponent
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1527,6 +2239,14 @@ export const getFrontendSettings = /* GraphQL */ `query GetFrontendSettings($id:
     domain
     cssS3Url
     components {
+      items {
+        id
+        frontendComponentId
+        frontendSettingsId
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -1550,6 +2270,10 @@ export const listFrontendSettings = /* GraphQL */ `query ListFrontendSettings(
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1611,6 +2335,10 @@ export const getApplicationStage = /* GraphQL */ `query GetApplicationStage($id:
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1621,6 +2349,22 @@ export const getApplicationStage = /* GraphQL */ `query GetApplicationStage($id:
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1631,6 +2375,10 @@ export const getApplicationStage = /* GraphQL */ `query GetApplicationStage($id:
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1663,9 +2411,43 @@ export const listApplicationStages = /* GraphQL */ `query ListApplicationStages(
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1696,9 +2478,43 @@ export const applicationStagesByName = /* GraphQL */ `query ApplicationStagesByN
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1731,9 +2547,43 @@ export const applicationStagesByAiSettingsIDAndId = /* GraphQL */ `query Applica
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1766,9 +2616,43 @@ export const applicationStagesByBackendSettingsIDAndId = /* GraphQL */ `query Ap
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1801,9 +2685,43 @@ export const applicationStagesByFrontendSettingsIDAndId = /* GraphQL */ `query A
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1836,9 +2754,43 @@ export const applicationStagesByCognitoUserPoolIDAndId = /* GraphQL */ `query Ap
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1900,9 +2852,43 @@ export const getApplication = /* GraphQL */ `query GetApplication($id: ID!) {
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1912,9 +2898,43 @@ export const getApplication = /* GraphQL */ `query GetApplication($id: ID!) {
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1924,9 +2944,43 @@ export const getApplication = /* GraphQL */ `query GetApplication($id: ID!) {
       id
       name
       aiSettingsID
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       backendSettingsID
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       frontendSettingsID
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       cognitoUserPoolID
+      cognitoUserPool {
+        id
+        name
+        userPoolId
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1960,9 +3014,49 @@ export const listApplications = /* GraphQL */ `query ListApplications(
       name
       version
       devStageID
+      DEV {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       stagingStageID
+      STAGING {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       prodStageID
+      PROD {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       aiServerSnapshotReferenceID
+      aiServerSnapshotReference {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -1997,9 +3091,49 @@ export const applicationsByDevStageIDAndId = /* GraphQL */ `query ApplicationsBy
       name
       version
       devStageID
+      DEV {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       stagingStageID
+      STAGING {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       prodStageID
+      PROD {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       aiServerSnapshotReferenceID
+      aiServerSnapshotReference {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2034,9 +3168,49 @@ export const applicationsByStagingStageIDAndId = /* GraphQL */ `query Applicatio
       name
       version
       devStageID
+      DEV {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       stagingStageID
+      STAGING {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       prodStageID
+      PROD {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       aiServerSnapshotReferenceID
+      aiServerSnapshotReference {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2071,9 +3245,49 @@ export const applicationsByProdStageIDAndId = /* GraphQL */ `query ApplicationsB
       name
       version
       devStageID
+      DEV {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       stagingStageID
+      STAGING {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       prodStageID
+      PROD {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       aiServerSnapshotReferenceID
+      aiServerSnapshotReference {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2108,9 +3322,49 @@ export const applicationsByAiServerSnapshotReferenceIDAndId = /* GraphQL */ `que
       name
       version
       devStageID
+      DEV {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       stagingStageID
+      STAGING {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       prodStageID
+      PROD {
+        id
+        name
+        aiSettingsID
+        backendSettingsID
+        frontendSettingsID
+        cognitoUserPoolID
+        createdAt
+        updatedAt
+        __typename
+      }
       aiServerSnapshotReferenceID
+      aiServerSnapshotReference {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2135,6 +3389,14 @@ export const getBackendEndpointAiApiTool = /* GraphQL */ `query GetBackendEndpoi
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2145,7 +3407,22 @@ export const getBackendEndpointAiApiTool = /* GraphQL */ `query GetBackendEndpoi
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2173,6 +3450,28 @@ export const listBackendEndpointAiApiTools = /* GraphQL */ `query ListBackendEnd
       id
       aiApiToolId
       backendEndpointId
+      aiApiTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendEndpoint {
+        id
+        name
+        url
+        description
+        methodID
+        parametersWIP
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2203,6 +3502,28 @@ export const backendEndpointAiApiToolsByAiApiToolId = /* GraphQL */ `query Backe
       id
       aiApiToolId
       backendEndpointId
+      aiApiTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendEndpoint {
+        id
+        name
+        url
+        description
+        methodID
+        parametersWIP
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2233,6 +3554,28 @@ export const backendEndpointAiApiToolsByBackendEndpointId = /* GraphQL */ `query
       id
       aiApiToolId
       backendEndpointId
+      aiApiTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendEndpoint {
+        id
+        name
+        url
+        description
+        methodID
+        parametersWIP
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2257,6 +3600,14 @@ export const getAiApiToolAiToolGroup = /* GraphQL */ `query GetAiApiToolAiToolGr
       useCases
       description
       payload
+      endpoint {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2264,6 +3615,18 @@ export const getAiApiToolAiToolGroup = /* GraphQL */ `query GetAiApiToolAiToolGr
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2291,6 +3654,24 @@ export const listAiApiToolAiToolGroups = /* GraphQL */ `query ListAiApiToolAiToo
       id
       aiApiToolId
       aiToolGroupId
+      aiApiTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2321,6 +3702,24 @@ export const aiApiToolAiToolGroupsByAiApiToolId = /* GraphQL */ `query AiApiTool
       id
       aiApiToolId
       aiToolGroupId
+      aiApiTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2351,6 +3750,24 @@ export const aiApiToolAiToolGroupsByAiToolGroupId = /* GraphQL */ `query AiApiTo
       id
       aiApiToolId
       aiToolGroupId
+      aiApiTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2376,6 +3793,14 @@ export const getFrontendComponentAiRenderTool = /* GraphQL */ `query GetFrontend
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2384,6 +3809,14 @@ export const getFrontendComponentAiRenderTool = /* GraphQL */ `query GetFrontend
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2411,6 +3844,26 @@ export const listFrontendComponentAiRenderTools = /* GraphQL */ `query ListFront
       id
       aiRenderToolId
       frontendComponentId
+      aiRenderTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        action
+        createdAt
+        updatedAt
+        __typename
+      }
+      frontendComponent {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2441,6 +3894,26 @@ export const frontendComponentAiRenderToolsByAiRenderToolId = /* GraphQL */ `que
       id
       aiRenderToolId
       frontendComponentId
+      aiRenderTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        action
+        createdAt
+        updatedAt
+        __typename
+      }
+      frontendComponent {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2471,6 +3944,26 @@ export const frontendComponentAiRenderToolsByFrontendComponentId = /* GraphQL */
       id
       aiRenderToolId
       frontendComponentId
+      aiRenderTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        action
+        createdAt
+        updatedAt
+        __typename
+      }
+      frontendComponent {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2496,6 +3989,14 @@ export const getAiRenderToolAiToolGroup = /* GraphQL */ `query GetAiRenderToolAi
       description
       payload
       action
+      component {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2503,6 +4004,18 @@ export const getAiRenderToolAiToolGroup = /* GraphQL */ `query GetAiRenderToolAi
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2530,6 +4043,25 @@ export const listAiRenderToolAiToolGroups = /* GraphQL */ `query ListAiRenderToo
       id
       aiRenderToolId
       aiToolGroupId
+      aiRenderTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        action
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2560,6 +4092,25 @@ export const aiRenderToolAiToolGroupsByAiRenderToolId = /* GraphQL */ `query AiR
       id
       aiRenderToolId
       aiToolGroupId
+      aiRenderTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        action
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2590,6 +4141,25 @@ export const aiRenderToolAiToolGroupsByAiToolGroupId = /* GraphQL */ `query AiRe
       id
       aiRenderToolId
       aiToolGroupId
+      aiRenderTool {
+        id
+        name
+        func
+        useCases
+        description
+        payload
+        action
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2610,6 +4180,18 @@ export const getAiToolGroupAiConfiguration = /* GraphQL */ `query GetAiToolGroup
     aiToolGroup {
       id
       name
+      apiTools {
+        nextToken
+        __typename
+      }
+      renderTools {
+        nextToken
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2618,6 +4200,27 @@ export const getAiToolGroupAiConfiguration = /* GraphQL */ `query GetAiToolGroup
       id
       name
       aiParametersID
+      aiParameters {
+        id
+        name
+        role
+        companyID
+        conversationPurpose
+        conversationType
+        prePrompt
+        postPrompt
+        llmID
+        chatMemory
+        responseTemperature
+        responseLanguage
+        createdAt
+        updatedAt
+        __typename
+      }
+      tools {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2645,6 +4248,21 @@ export const listAiToolGroupAiConfigurations = /* GraphQL */ `query ListAiToolGr
       id
       aiToolGroupId
       aiConfigurationId
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiConfiguration {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2675,6 +4293,21 @@ export const aiToolGroupAiConfigurationsByAiToolGroupId = /* GraphQL */ `query A
       id
       aiToolGroupId
       aiConfigurationId
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiConfiguration {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2705,6 +4338,21 @@ export const aiToolGroupAiConfigurationsByAiConfigurationId = /* GraphQL */ `que
       id
       aiToolGroupId
       aiConfigurationId
+      aiToolGroup {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiConfiguration {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2727,10 +4375,45 @@ export const getAiProcessAiSettings = /* GraphQL */ `query GetAiProcessAiSetting
       tebeDeleted
       name
       taskTypeID
+      taskType {
+        id
+        types
+        createdAt
+        updatedAt
+        __typename
+      }
       aiConfigID
+      aiConfig {
+        id
+        name
+        aiParametersID
+        createdAt
+        updatedAt
+        __typename
+      }
+      usedIn {
+        nextToken
+        __typename
+      }
       communicationSourceType
       frontedWebsocketCommunicationSourceID
+      frontedWebsocketCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       backendQueueCommunicationSourceID
+      backendQueueCommunicationSource {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2739,6 +4422,10 @@ export const getAiProcessAiSettings = /* GraphQL */ `query GetAiProcessAiSetting
       id
       name
       balancerUrl
+      processes {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2766,6 +4453,27 @@ export const listAiProcessAiSettings = /* GraphQL */ `query ListAiProcessAiSetti
       id
       aiProcessId
       aiSettingsId
+      aiProcess {
+        id
+        tebeDeleted
+        name
+        taskTypeID
+        aiConfigID
+        communicationSourceType
+        frontedWebsocketCommunicationSourceID
+        backendQueueCommunicationSourceID
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2796,6 +4504,27 @@ export const aiProcessAiSettingsByAiProcessId = /* GraphQL */ `query AiProcessAi
       id
       aiProcessId
       aiSettingsId
+      aiProcess {
+        id
+        tebeDeleted
+        name
+        taskTypeID
+        aiConfigID
+        communicationSourceType
+        frontedWebsocketCommunicationSourceID
+        backendQueueCommunicationSourceID
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2826,6 +4555,27 @@ export const aiProcessAiSettingsByAiSettingsId = /* GraphQL */ `query AiProcessA
       id
       aiProcessId
       aiSettingsId
+      aiProcess {
+        id
+        tebeDeleted
+        name
+        taskTypeID
+        aiConfigID
+        communicationSourceType
+        frontedWebsocketCommunicationSourceID
+        backendQueueCommunicationSourceID
+        createdAt
+        updatedAt
+        __typename
+      }
+      aiSettings {
+        id
+        name
+        balancerUrl
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2847,6 +4597,10 @@ export const getBackendQueueBackendSettings = /* GraphQL */ `query GetBackendQue
       id
       name
       url
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2856,6 +4610,22 @@ export const getBackendQueueBackendSettings = /* GraphQL */ `query GetBackendQue
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2883,6 +4653,23 @@ export const listBackendQueueBackendSettings = /* GraphQL */ `query ListBackendQ
       id
       backendQueueId
       backendSettingsId
+      backendQueue {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2913,6 +4700,23 @@ export const backendQueueBackendSettingsByBackendQueueId = /* GraphQL */ `query 
       id
       backendQueueId
       backendSettingsId
+      backendQueue {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2943,6 +4747,23 @@ export const backendQueueBackendSettingsByBackendSettingsId = /* GraphQL */ `que
       id
       backendQueueId
       backendSettingsId
+      backendQueue {
+        id
+        name
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2964,6 +4785,10 @@ export const getBackendTopicBackendSettings = /* GraphQL */ `query GetBackendTop
       id
       name
       arn
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -2973,6 +4798,22 @@ export const getBackendTopicBackendSettings = /* GraphQL */ `query GetBackendTop
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3000,6 +4841,23 @@ export const listBackendTopicBackendSettings = /* GraphQL */ `query ListBackendT
       id
       backendTopicId
       backendSettingsId
+      backendTopic {
+        id
+        name
+        arn
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3030,6 +4888,23 @@ export const backendTopicBackendSettingsByBackendTopicId = /* GraphQL */ `query 
       id
       backendTopicId
       backendSettingsId
+      backendTopic {
+        id
+        name
+        arn
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3060,6 +4935,23 @@ export const backendTopicBackendSettingsByBackendSettingsId = /* GraphQL */ `que
       id
       backendTopicId
       backendSettingsId
+      backendTopic {
+        id
+        name
+        arn
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3081,7 +4973,18 @@ export const getBackendDatabaseBackendSettings = /* GraphQL */ `query GetBackend
       id
       name
       backendDatabaseTypeID
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       reference
+      usedIn {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3091,6 +4994,22 @@ export const getBackendDatabaseBackendSettings = /* GraphQL */ `query GetBackend
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3118,6 +5037,24 @@ export const listBackendDatabaseBackendSettings = /* GraphQL */ `query ListBacke
       id
       backendDatabaseId
       backendSettingsId
+      backendDatabase {
+        id
+        name
+        backendDatabaseTypeID
+        reference
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3148,6 +5085,24 @@ export const backendDatabaseBackendSettingsByBackendDatabaseId = /* GraphQL */ `
       id
       backendDatabaseId
       backendSettingsId
+      backendDatabase {
+        id
+        name
+        backendDatabaseTypeID
+        reference
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3178,6 +5133,24 @@ export const backendDatabaseBackendSettingsByBackendSettingsId = /* GraphQL */ `
       id
       backendDatabaseId
       backendSettingsId
+      backendDatabase {
+        id
+        name
+        backendDatabaseTypeID
+        reference
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3201,7 +5174,22 @@ export const getBackendEndpointBackendSettings = /* GraphQL */ `query GetBackend
       url
       description
       methodID
+      method {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       parametersWIP
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3211,6 +5199,22 @@ export const getBackendEndpointBackendSettings = /* GraphQL */ `query GetBackend
       name
       region
       secretName
+      endpoints {
+        nextToken
+        __typename
+      }
+      databases {
+        nextToken
+        __typename
+      }
+      queues {
+        nextToken
+        __typename
+      }
+      topics {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3238,6 +5242,26 @@ export const listBackendEndpointBackendSettings = /* GraphQL */ `query ListBacke
       id
       backendEndpointId
       backendSettingsId
+      backendEndpoint {
+        id
+        name
+        url
+        description
+        methodID
+        parametersWIP
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3268,6 +5292,26 @@ export const backendEndpointBackendSettingsByBackendEndpointId = /* GraphQL */ `
       id
       backendEndpointId
       backendSettingsId
+      backendEndpoint {
+        id
+        name
+        url
+        description
+        methodID
+        parametersWIP
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3298,6 +5342,26 @@ export const backendEndpointBackendSettingsByBackendSettingsId = /* GraphQL */ `
       id
       backendEndpointId
       backendSettingsId
+      backendEndpoint {
+        id
+        name
+        url
+        description
+        methodID
+        parametersWIP
+        createdAt
+        updatedAt
+        __typename
+      }
+      backendSettings {
+        id
+        name
+        region
+        secretName
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3319,6 +5383,14 @@ export const getFrontendComponentFrontendSettings = /* GraphQL */ `query GetFron
       id
       name
       description
+      usedInSettings {
+        nextToken
+        __typename
+      }
+      usedInTool {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3328,6 +5400,10 @@ export const getFrontendComponentFrontendSettings = /* GraphQL */ `query GetFron
       name
       domain
       cssS3Url
+      components {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3355,6 +5431,23 @@ export const listFrontendComponentFrontendSettings = /* GraphQL */ `query ListFr
       id
       frontendComponentId
       frontendSettingsId
+      frontendComponent {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3385,6 +5478,23 @@ export const frontendComponentFrontendSettingsByFrontendComponentId = /* GraphQL
       id
       frontendComponentId
       frontendSettingsId
+      frontendComponent {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -3415,6 +5525,23 @@ export const frontendComponentFrontendSettingsByFrontendSettingsId = /* GraphQL 
       id
       frontendComponentId
       frontendSettingsId
+      frontendComponent {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
+      frontendSettings {
+        id
+        name
+        domain
+        cssS3Url
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename

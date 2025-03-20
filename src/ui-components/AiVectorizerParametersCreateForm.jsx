@@ -5,7 +5,7 @@
  **************************************************************************/
 
 /* eslint-disable */
-import * as React from 'react';
+import * as React from "react";
 import {
   Autocomplete,
   Badge,
@@ -18,11 +18,11 @@ import {
   Text,
   TextField,
   useTheme,
-} from '@aws-amplify/ui-react';
-import { fetchByPath, getOverrideProps, validateField } from './utils';
-import { generateClient } from 'aws-amplify/api';
-import { listAiLlms } from '../graphql/queries';
-import { createAiVectorizerParameters } from '../graphql/mutations';
+} from "@aws-amplify/ui-react";
+import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import { generateClient } from "aws-amplify/api";
+import { listAiLlms } from "../graphql/queries";
+import { createAiVectorizerParameters } from "../graphql/mutations";
 const client = generateClient();
 function ArrayField({
   items = [],
@@ -64,7 +64,7 @@ function ArrayField({
     if (
       currentFieldValue !== undefined &&
       currentFieldValue !== null &&
-      currentFieldValue !== '' &&
+      currentFieldValue !== "" &&
       !hasError
     ) {
       const newItems = [...items];
@@ -81,18 +81,18 @@ function ArrayField({
   const arraySection = (
     <React.Fragment>
       {!!items?.length && (
-        <ScrollView height="inherit" width="inherit" maxHeight={'7rem'}>
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
           {items.map((value, index) => {
             return (
               <Badge
                 key={index}
                 style={{
-                  cursor: 'pointer',
-                  alignItems: 'center',
+                  cursor: "pointer",
+                  alignItems: "center",
                   marginRight: 3,
                   marginTop: 3,
                   backgroundColor:
-                    index === selectedBadgeIndex ? '#B8CEF9' : '',
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
                 }}
                 onClick={() => {
                   setSelectedBadgeIndex(index);
@@ -103,7 +103,7 @@ function ArrayField({
                 {getBadgeText ? getBadgeText(value) : value.toString()}
                 <Icon
                   style={{
-                    cursor: 'pointer',
+                    cursor: "pointer",
                     paddingLeft: 3,
                     width: 20,
                     height: 20,
@@ -111,8 +111,8 @@ function ArrayField({
                   viewBox={{ width: 20, height: 20 }}
                   paths={[
                     {
-                      d: 'M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z',
-                      stroke: 'black',
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
                     },
                   ]}
                   ariaLabel="button"
@@ -171,7 +171,7 @@ function ArrayField({
             ></Button>
           )}
           <Button size="small" variation="link" onClick={addItem}>
-            {selectedBadgeIndex !== undefined ? 'Save' : 'Add'}
+            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
           </Button>
         </Flex>
       )}
@@ -191,10 +191,10 @@ export default function AiVectorizerParametersCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    name: '',
+    name: "",
     aiLlm: undefined,
-    chunkSize: '',
-    chunkOverlap: '',
+    chunkSize: "",
+    chunkOverlap: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [aiLlm, setAiLlm] = React.useState(initialValues.aiLlm);
@@ -202,7 +202,7 @@ export default function AiVectorizerParametersCreateForm(props) {
   const [aiLlmRecords, setAiLlmRecords] = React.useState([]);
   const [chunkSize, setChunkSize] = React.useState(initialValues.chunkSize);
   const [chunkOverlap, setChunkOverlap] = React.useState(
-    initialValues.chunkOverlap,
+    initialValues.chunkOverlap
   );
   const autocompleteLength = 10;
   const [errors, setErrors] = React.useState({});
@@ -210,13 +210,13 @@ export default function AiVectorizerParametersCreateForm(props) {
     setName(initialValues.name);
     setAiLlm(initialValues.aiLlm);
     setCurrentAiLlmValue(undefined);
-    setCurrentAiLlmDisplayValue('');
+    setCurrentAiLlmDisplayValue("");
     setChunkSize(initialValues.chunkSize);
     setChunkOverlap(initialValues.chunkOverlap);
     setErrors({});
   };
   const [currentAiLlmDisplayValue, setCurrentAiLlmDisplayValue] =
-    React.useState('');
+    React.useState("");
   const [currentAiLlmValue, setCurrentAiLlmValue] = React.useState(undefined);
   const aiLlmRef = React.createRef();
   const getIDValue = {
@@ -225,21 +225,21 @@ export default function AiVectorizerParametersCreateForm(props) {
   const aiLlmIdSet = new Set(
     Array.isArray(aiLlm)
       ? aiLlm.map((r) => getIDValue.aiLlm?.(r))
-      : getIDValue.aiLlm?.(aiLlm),
+      : getIDValue.aiLlm?.(aiLlm)
   );
   const getDisplayValue = {
-    aiLlm: (r) => `${r?.name ? r?.name + ' - ' : ''}${r?.id}`,
+    aiLlm: (r) => `${r?.name ? r?.name + " - " : ""}${r?.id}`,
   };
   const validations = {
-    name: [{ type: 'Required' }],
+    name: [{ type: "Required" }],
     aiLlm: [],
-    chunkSize: [{ type: 'Required' }],
-    chunkOverlap: [{ type: 'Required' }],
+    chunkSize: [{ type: "Required" }],
+    chunkOverlap: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
     currentValue,
-    getDisplayValue,
+    getDisplayValue
   ) => {
     const value =
       currentValue && getDisplayValue
@@ -256,7 +256,7 @@ export default function AiVectorizerParametersCreateForm(props) {
   const fetchAiLlmRecords = async (value) => {
     setAiLlmLoading(true);
     const newOptions = [];
-    let newNext = '';
+    let newNext = "";
     while (newOptions.length < autocompleteLength && newNext != null) {
       const variables = {
         limit: autocompleteLength * 5,
@@ -265,16 +265,16 @@ export default function AiVectorizerParametersCreateForm(props) {
         },
       };
       if (newNext) {
-        variables['nextToken'] = newNext;
+        variables["nextToken"] = newNext;
       }
       const result = (
         await client.graphql({
-          query: listAiLlms.replaceAll('__typename', ''),
+          query: listAiLlms.replaceAll("__typename", ""),
           variables,
         })
       )?.data?.listAiLlms?.items;
       var loaded = result.filter(
-        (item) => !aiLlmIdSet.has(getIDValue.aiLlm?.(item)),
+        (item) => !aiLlmIdSet.has(getIDValue.aiLlm?.(item))
       );
       newOptions.push(...loaded);
       newNext = result.nextToken;
@@ -283,7 +283,7 @@ export default function AiVectorizerParametersCreateForm(props) {
     setAiLlmLoading(false);
   };
   React.useEffect(() => {
-    fetchAiLlmRecords('');
+    fetchAiLlmRecords("");
   }, []);
   return (
     <Grid
@@ -307,9 +307,9 @@ export default function AiVectorizerParametersCreateForm(props) {
                   runValidationTasks(
                     fieldName,
                     item,
-                    getDisplayValue[fieldName],
-                  ),
-                ),
+                    getDisplayValue[fieldName]
+                  )
+                )
               );
               return promises;
             }
@@ -317,11 +317,11 @@ export default function AiVectorizerParametersCreateForm(props) {
               runValidationTasks(
                 fieldName,
                 modelFields[fieldName],
-                getDisplayValue[fieldName],
-              ),
+                getDisplayValue[fieldName]
+              )
             );
             return promises;
-          }, []),
+          }, [])
         );
         if (validationResponses.some((r) => r.hasError)) {
           return;
@@ -331,7 +331,7 @@ export default function AiVectorizerParametersCreateForm(props) {
         }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === 'string' && value === '') {
+            if (typeof value === "string" && value === "") {
               modelFields[key] = null;
             }
           });
@@ -342,7 +342,7 @@ export default function AiVectorizerParametersCreateForm(props) {
             chunkOverlap: modelFields.chunkOverlap,
           };
           await client.graphql({
-            query: createAiVectorizerParameters.replaceAll('__typename', ''),
+            query: createAiVectorizerParameters.replaceAll("__typename", ""),
             variables: {
               input: {
                 ...modelFieldsToSave,
@@ -357,12 +357,12 @@ export default function AiVectorizerParametersCreateForm(props) {
           }
         } catch (err) {
           if (onError) {
-            const messages = err.errors.map((e) => e.message).join('\n');
+            const messages = err.errors.map((e) => e.message).join("\n");
             onError(modelFields, messages);
           }
         }
       }}
-      {...getOverrideProps(overrides, 'AiVectorizerParametersCreateForm')}
+      {...getOverrideProps(overrides, "AiVectorizerParametersCreateForm")}
       {...rest}
     >
       <TextField
@@ -383,14 +383,14 @@ export default function AiVectorizerParametersCreateForm(props) {
             value = result?.name ?? value;
           }
           if (errors.name?.hasError) {
-            runValidationTasks('name', value);
+            runValidationTasks("name", value);
           }
           setName(value);
         }}
-        onBlur={() => runValidationTasks('name', name)}
+        onBlur={() => runValidationTasks("name", name)}
         errorMessage={errors.name?.errorMessage}
         hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, 'name')}
+        {...getOverrideProps(overrides, "name")}
       ></TextField>
       <ArrayField
         lengthLimit={1}
@@ -408,25 +408,25 @@ export default function AiVectorizerParametersCreateForm(props) {
           }
           setAiLlm(value);
           setCurrentAiLlmValue(undefined);
-          setCurrentAiLlmDisplayValue('');
+          setCurrentAiLlmDisplayValue("");
         }}
         currentFieldValue={currentAiLlmValue}
-        label={'Ai llm'}
+        label={"Ai llm"}
         items={aiLlm ? [aiLlm] : []}
         hasError={errors?.aiLlm?.hasError}
         runValidationTasks={async () =>
-          await runValidationTasks('aiLlm', currentAiLlmValue)
+          await runValidationTasks("aiLlm", currentAiLlmValue)
         }
         errorMessage={errors?.aiLlm?.errorMessage}
         getBadgeText={getDisplayValue.aiLlm}
         setFieldValue={(model) => {
           setCurrentAiLlmDisplayValue(
-            model ? getDisplayValue.aiLlm(model) : '',
+            model ? getDisplayValue.aiLlm(model) : ""
           );
           setCurrentAiLlmValue(model);
         }}
         inputFieldRef={aiLlmRef}
-        defaultFieldValue={''}
+        defaultFieldValue={""}
       >
         <Autocomplete
           label="Ai llm"
@@ -445,31 +445,31 @@ export default function AiVectorizerParametersCreateForm(props) {
             setCurrentAiLlmValue(
               aiLlmRecords.find((r) =>
                 Object.entries(JSON.parse(id)).every(
-                  ([key, value]) => r[key] === value,
-                ),
-              ),
+                  ([key, value]) => r[key] === value
+                )
+              )
             );
             setCurrentAiLlmDisplayValue(label);
-            runValidationTasks('aiLlm', label);
+            runValidationTasks("aiLlm", label);
           }}
           onClear={() => {
-            setCurrentAiLlmDisplayValue('');
+            setCurrentAiLlmDisplayValue("");
           }}
           onChange={(e) => {
             let { value } = e.target;
             fetchAiLlmRecords(value);
             if (errors.aiLlm?.hasError) {
-              runValidationTasks('aiLlm', value);
+              runValidationTasks("aiLlm", value);
             }
             setCurrentAiLlmDisplayValue(value);
             setCurrentAiLlmValue(undefined);
           }}
-          onBlur={() => runValidationTasks('aiLlm', currentAiLlmDisplayValue)}
+          onBlur={() => runValidationTasks("aiLlm", currentAiLlmDisplayValue)}
           errorMessage={errors.aiLlm?.errorMessage}
           hasError={errors.aiLlm?.hasError}
           ref={aiLlmRef}
           labelHidden={true}
-          {...getOverrideProps(overrides, 'aiLlm')}
+          {...getOverrideProps(overrides, "aiLlm")}
         ></Autocomplete>
       </ArrayField>
       <TextField
@@ -494,14 +494,14 @@ export default function AiVectorizerParametersCreateForm(props) {
             value = result?.chunkSize ?? value;
           }
           if (errors.chunkSize?.hasError) {
-            runValidationTasks('chunkSize', value);
+            runValidationTasks("chunkSize", value);
           }
           setChunkSize(value);
         }}
-        onBlur={() => runValidationTasks('chunkSize', chunkSize)}
+        onBlur={() => runValidationTasks("chunkSize", chunkSize)}
         errorMessage={errors.chunkSize?.errorMessage}
         hasError={errors.chunkSize?.hasError}
-        {...getOverrideProps(overrides, 'chunkSize')}
+        {...getOverrideProps(overrides, "chunkSize")}
       ></TextField>
       <TextField
         label="Chunk overlap"
@@ -521,18 +521,18 @@ export default function AiVectorizerParametersCreateForm(props) {
             value = result?.chunkOverlap ?? value;
           }
           if (errors.chunkOverlap?.hasError) {
-            runValidationTasks('chunkOverlap', value);
+            runValidationTasks("chunkOverlap", value);
           }
           setChunkOverlap(value);
         }}
-        onBlur={() => runValidationTasks('chunkOverlap', chunkOverlap)}
+        onBlur={() => runValidationTasks("chunkOverlap", chunkOverlap)}
         errorMessage={errors.chunkOverlap?.errorMessage}
         hasError={errors.chunkOverlap?.hasError}
-        {...getOverrideProps(overrides, 'chunkOverlap')}
+        {...getOverrideProps(overrides, "chunkOverlap")}
       ></TextField>
       <Flex
         justifyContent="space-between"
-        {...getOverrideProps(overrides, 'CTAFlex')}
+        {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
           children="Clear"
@@ -541,18 +541,18 @@ export default function AiVectorizerParametersCreateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          {...getOverrideProps(overrides, 'ClearButton')}
+          {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
-          {...getOverrideProps(overrides, 'RightAlignCTASubFlex')}
+          {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
             children="Submit"
             type="submit"
             variation="primary"
             isDisabled={Object.values(errors).some((e) => e?.hasError)}
-            {...getOverrideProps(overrides, 'SubmitButton')}
+            {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>
       </Flex>
