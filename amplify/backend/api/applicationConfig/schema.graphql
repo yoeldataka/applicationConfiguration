@@ -1,285 +1,282 @@
 type AiClientCompany @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    business: String!
-    values: String!
+  id: ID!
+  name: String!
+  business: String!
+  values: String!
 }
 
 type AiLlm @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    input: [String!]!
-    output: [String!]!
-    description: String!
-    available: Boolean!
-    maxTokens: Float
+  id: ID!
+  name: String!
+  input: [String!]!
+  output: [String!]!
+  description: String!
+  available: Boolean!
+  maxTokens: Float
 }
 
 type AiVectorialDbConfig @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    apiKey: String!
-    indexName: String!
-    nameSpace: String!
-    score: Float!
-    numberOfSimilarities: Float!
+  id: ID!
+  name: String!
+  apiKey: String!
+  indexName: String!
+  nameSpace: String!
+  score: Float!
+  numberOfSimilarities: Float!
 }
 
 type AiVectorizerParameters @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    aiLlmID: ID! @index(name: "byAiLlm", sortKeyFields: ["id"])
-    aiLlm: AiLlm @hasOne(fields: ["aiLlmID"])
-    chunkSize: Float!
-    chunkOverlap: String!
+  id: ID!
+  name: String!
+  aiLlmID: ID! @index(name: "byAiLlm", sortKeyFields: ["id"])
+  aiLlm: AiLlm @hasOne(fields: ["aiLlmID"])
+  chunkSize: Float!
+  chunkOverlap: String!
 }
 
 type AiParameters @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    role: String!
-    companyID: ID! @index(name: "byCompany", sortKeyFields: ["id"])
-    company: AiClientCompany @hasOne(fields: ["companyID"])
-    conversationPurpose: String!
-    conversationType: String!
-    prePrompt: String!
-    postPrompt: String!
-    llmID: ID! @index(name: "byLlm", sortKeyFields: ["id"])
-    llm: AiLlm @hasOne(fields: ["llmID"])
-    chatMemory: Float!
-    responseTemperature: Float!
-    responseLanguage: String!
+  id: ID!
+  name: String!
+  role: String!
+  companyID: ID! @index(name: "byCompany", sortKeyFields: ["id"])
+  company: AiClientCompany @hasOne(fields: ["companyID"])
+  conversationPurpose: String!
+  conversationType: String!
+  prePrompt: String!
+  postPrompt: String!
+  llmID: ID! @index(name: "byLlm", sortKeyFields: ["id"])
+  llm: AiLlm @hasOne(fields: ["llmID"])
+  chatMemory: Float!
+  responseTemperature: Float!
+  responseLanguage: String!
 }
 
 type AiApiTool @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    func: String!
-    useCases: String!
-    description: String!
-    payload: String
-    endpoint: [BackendEndpoint!]
-        @manyToMany(relationName: "BackendEndpointAiApiTool")
-    usedIn: [AiToolGroup] @manyToMany(relationName: "AiApiToolAiToolGroup")
+  id: ID!
+  name: String!
+  func: String!
+  useCases: String!
+  description: String!
+  payload: String
+  endpoint: [BackendEndpoint!]
+    @manyToMany(relationName: "BackendEndpointAiApiTool")
+  usedIn: [AiToolGroup] @manyToMany(relationName: "AiApiToolAiToolGroup")
 }
 
 type AiRenderTool @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    func: String!
-    useCases: String!
-    description: String!
-    payload: String
-    action: String!
-    component: [FrontendComponent!]
-        @manyToMany(relationName: "FrontendComponentAiRenderTool")
-    usedIn: [AiToolGroup] @manyToMany(relationName: "AiRenderToolAiToolGroup")
+  id: ID!
+  name: String!
+  func: String!
+  useCases: String!
+  description: String!
+  payload: String
+  action: String!
+  component: [FrontendComponent!]
+    @manyToMany(relationName: "FrontendComponentAiRenderTool")
+  usedIn: [AiToolGroup] @manyToMany(relationName: "AiRenderToolAiToolGroup")
 }
 
 type AiToolGroup @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    apiTools: [AiApiTool] @manyToMany(relationName: "AiApiToolAiToolGroup")
-    renderTools: [AiRenderTool]
-        @manyToMany(relationName: "AiRenderToolAiToolGroup")
-    usedIn: [AiConfiguration]
-        @manyToMany(relationName: "AiToolGroupAiConfiguration")
+  id: ID!
+  name: String!
+  apiTools: [AiApiTool] @manyToMany(relationName: "AiApiToolAiToolGroup")
+  renderTools: [AiRenderTool]
+    @manyToMany(relationName: "AiRenderToolAiToolGroup")
+  usedIn: [AiConfiguration]
+    @manyToMany(relationName: "AiToolGroupAiConfiguration")
 }
 
 type AiConfiguration @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    aiParametersID: ID! @index(name: "byAiParameters", sortKeyFields: ["id"])
-    aiParameters: AiParameters @hasOne(fields: ["aiParametersID"])
-    tools: [AiToolGroup] @manyToMany(relationName: "AiToolGroupAiConfiguration")
+  id: ID!
+  name: String!
+  aiParametersID: ID! @index(name: "byAiParameters", sortKeyFields: ["id"])
+  aiParameters: AiParameters @hasOne(fields: ["aiParametersID"])
+  tools: [AiToolGroup] @manyToMany(relationName: "AiToolGroupAiConfiguration")
 }
 
 type AiIndexationConfiguration @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    vectorizerParametersID: ID!
-        @index(name: "byVectorizerParameters", sortKeyFields: ["id"])
-    vectorizerParameters: AiVectorizerParameters
-        @hasOne(fields: ["vectorizerParametersID"])
-    vectorialDbConfigID: ID!
-        @index(name: "byVectorialDbConfig", sortKeyFields: ["id"])
-    vectorialDbConfig: AiVectorialDbConfig
-        @hasOne(fields: ["vectorialDbConfigID"])
+  id: ID!
+  name: String!
+  vectorizerParametersID: ID!
+    @index(name: "byVectorizerParameters", sortKeyFields: ["id"])
+  vectorizerParameters: AiVectorizerParameters
+    @hasOne(fields: ["vectorizerParametersID"])
+  vectorialDbConfigID: ID!
+    @index(name: "byVectorialDbConfig", sortKeyFields: ["id"])
+  vectorialDbConfig: AiVectorialDbConfig
+    @hasOne(fields: ["vectorialDbConfigID"])
 }
 
 type AiWebsocket @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    url: String!
+  id: ID!
+  name: String!
+  url: String!
 }
 
 enum communicationSourceType {
-    WEBSOCKET
-    BACKEND_QUEUE
+  WEBSOCKET
+  BACKEND_QUEUE
 }
 
 type AiTaskTypes @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    types: String!
+  id: ID!
+  types: String!
 }
 
 type AiProcess @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    taskTypeID: ID! @index(name: "byTaskType", sortKeyFields: ["id"])
-    taskType: AiTaskTypes @hasOne(fields: ["taskTypeID"])
-    aiConfigID: ID! @index(name: "byAiConfig", sortKeyFields: ["id"])
-    aiConfig: AiConfiguration @hasOne(fields: ["aiConfigID"])
-    communicationSourceType: communicationSourceType!
-    frontedWebsocketCommunicationSourceID: ID
-        @index(
-            name: "byFrontedWebsocketCommunicationSource"
-            sortKeyFields: ["id"]
-        )
-    frontedWebsocketCommunicationSource: AiWebsocket
-        @hasOne(fields: ["frontedWebsocketCommunicationSourceID"])
-    backendQueueCommunicationSourceID: ID
-        @index(name: "byBackendQueueCommunicationSource", sortKeyFields: ["id"])
-    backendQueueCommunicationSource: BackendQueue
-        @hasOne(fields: ["backendQueueCommunicationSourceID"])
-    usedIn: [AiSettings] @manyToMany(relationName: "AiProcessAiSettings")
+  id: ID!
+  tebeDeleted: Boolean!
+  name: String!
+  taskTypeID: ID! @index(name: "byTaskType", sortKeyFields: ["id"])
+  taskType: AiTaskTypes @hasOne(fields: ["taskTypeID"])
+  aiConfigID: ID! @index(name: "byAiConfig", sortKeyFields: ["id"])
+  aiConfig: AiConfiguration @hasOne(fields: ["aiConfigID"])
+  usedIn: [AiSettings] @manyToMany(relationName: "AiProcessAiSettings")
+  communicationSourceType: communicationSourceType!
+  frontedWebsocketCommunicationSourceID: ID
+    @index(name: "byFrontedWebsocketCommunicationSource", sortKeyFields: ["id"])
+  frontedWebsocketCommunicationSource: AiWebsocket
+    @hasOne(fields: ["frontedWebsocketCommunicationSourceID"])
+  backendQueueCommunicationSourceID: ID
+    @index(name: "byBackendQueueCommunicationSource", sortKeyFields: ["id"])
+  backendQueueCommunicationSource: BackendQueue
+    @hasOne(fields: ["backendQueueCommunicationSourceID"])
 }
 
 type AiSettings @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    balancerUrl: String!
-    processes: [AiProcess] @manyToMany(relationName: "AiProcessAiSettings")
+  id: ID!
+  name: String!
+  balancerUrl: String!
+  processes: [AiProcess] @manyToMany(relationName: "AiProcessAiSettings")
 }
 
 type BackendQueue @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    url: String!
-    usedIn: [BackendSettings]
-        @manyToMany(relationName: "BackendQueueBackendSettings")
+  id: ID!
+  name: String!
+  url: String!
+  usedIn: [BackendSettings]
+    @manyToMany(relationName: "BackendQueueBackendSettings")
 }
 
 type BackendTopic @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    arn: String!
-    usedIn: [BackendSettings]
-        @manyToMany(relationName: "BackendTopicBackendSettings")
+  id: ID!
+  name: String!
+  arn: String!
+  usedIn: [BackendSettings]
+    @manyToMany(relationName: "BackendTopicBackendSettings")
 }
 
 type BackendDatabaseType @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
+  id: ID!
+  name: String!
 }
 
 type BackendDatabase @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    backendDatabaseTypeID: ID!
-        @index(name: "byBackendDatabaseType", sortKeyFields: ["id"])
-    type: BackendDatabaseType @hasOne(fields: ["backendDatabaseTypeID"])
-    reference: String!
-    usedIn: [BackendSettings]
-        @manyToMany(relationName: "BackendDatabaseBackendSettings")
+  id: ID!
+  name: String!
+  backendDatabaseTypeID: ID!
+    @index(name: "byBackendDatabaseType", sortKeyFields: ["id"])
+  type: BackendDatabaseType @hasOne(fields: ["backendDatabaseTypeID"])
+  reference: String!
+  usedIn: [BackendSettings]
+    @manyToMany(relationName: "BackendDatabaseBackendSettings")
 }
 
 type BackendEndpointMethod @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
+  id: ID!
+  name: String!
 }
 
 type BackendEndpoint @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    url: String!
-    description: String!
-    methodID: ID @index(name: "byBackendEndpointMethod", sortKeyFields: ["id"])
-    method: BackendEndpointMethod @hasOne(fields: ["methodID"])
-    parametersWIP: String
-    usedInSettings: [BackendSettings]
-        @manyToMany(relationName: "BackendEndpointBackendSettings")
-    usedInTool: [AiApiTool]
-        @manyToMany(relationName: "BackendEndpointAiApiTool")
+  id: ID!
+  name: String!
+  url: String!
+  description: String!
+  methodID: ID @index(name: "byBackendEndpointMethod", sortKeyFields: ["id"])
+  method: BackendEndpointMethod @hasOne(fields: ["methodID"])
+  parametersWIP: String
+  usedInSettings: [BackendSettings]
+    @manyToMany(relationName: "BackendEndpointBackendSettings")
+  usedInTool: [AiApiTool] @manyToMany(relationName: "BackendEndpointAiApiTool")
 }
 
 type BackendSettings @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    region: String!
-    secretName: String!
-    endpoints: [BackendEndpoint]
-        @manyToMany(relationName: "BackendEndpointBackendSettings")
-    databases: [BackendDatabase]
-        @manyToMany(relationName: "BackendDatabaseBackendSettings")
-    queues: [BackendQueue]
-        @manyToMany(relationName: "BackendQueueBackendSettings")
-    topics: [BackendTopic]
-        @manyToMany(relationName: "BackendTopicBackendSettings")
+  id: ID!
+  name: String!
+  region: String!
+  secretName: String!
+  endpoints: [BackendEndpoint]
+    @manyToMany(relationName: "BackendEndpointBackendSettings")
+  databases: [BackendDatabase]
+    @manyToMany(relationName: "BackendDatabaseBackendSettings")
+  queues: [BackendQueue]
+    @manyToMany(relationName: "BackendQueueBackendSettings")
+  topics: [BackendTopic]
+    @manyToMany(relationName: "BackendTopicBackendSettings")
 }
 
 type FrontendComponent @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    description: String!
-    usedInSettings: [FrontendSettings]
-        @manyToMany(relationName: "FrontendComponentFrontendSettings")
-    usedInTool: [AiRenderTool]
-        @manyToMany(relationName: "FrontendComponentAiRenderTool")
+  id: ID!
+  name: String!
+  description: String!
+  usedInSettings: [FrontendSettings]
+    @manyToMany(relationName: "FrontendComponentFrontendSettings")
+  usedInTool: [AiRenderTool]
+    @manyToMany(relationName: "FrontendComponentAiRenderTool")
 }
 
 type FrontendSettings @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    domain: String!
-    cssS3Url: String
-    components: [FrontendComponent]
-        @manyToMany(relationName: "FrontendComponentFrontendSettings")
+  id: ID!
+  name: String!
+  domain: String!
+  cssS3Url: String
+  components: [FrontendComponent]
+    @manyToMany(relationName: "FrontendComponentFrontendSettings")
 }
 
 type ApplicationStageCognitoUserPool @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
-    userPoolId: String!
+  id: ID!
+  name: String!
+  userPoolId: String!
 }
 
 type ApplicationStage @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String! @index(name: "byStageName")
-    aiSettingsID: ID! @index(name: "byAiSettings", sortKeyFields: ["id"])
-    aiSettings: AiSettings @hasOne(fields: ["aiSettingsID"])
-    backendSettingsID: ID!
-        @index(name: "byBackendSettings", sortKeyFields: ["id"])
-    backendSettings: BackendSettings @hasOne(fields: ["backendSettingsID"])
-    frontendSettingsID: ID!
-        @index(name: "byFrontendSettings", sortKeyFields: ["id"])
-    frontendSettings: FrontendSettings @hasOne(fields: ["frontendSettingsID"])
-    cognitoUserPoolID: ID!
-        @index(name: "byCognitoUserPool", sortKeyFields: ["id"])
-    cognitoUserPool: ApplicationStageCognitoUserPool
-        @hasOne(fields: ["cognitoUserPoolID"])
+  id: ID!
+  name: String! @index(name: "byStageName")
+  aiSettingsID: ID! @index(name: "byAiSettings", sortKeyFields: ["id"])
+  aiSettings: AiSettings @hasOne(fields: ["aiSettingsID"])
+  backendSettingsID: ID!
+    @index(name: "byBackendSettings", sortKeyFields: ["id"])
+  backendSettings: BackendSettings @hasOne(fields: ["backendSettingsID"])
+  frontendSettingsID: ID!
+    @index(name: "byFrontendSettings", sortKeyFields: ["id"])
+  frontendSettings: FrontendSettings @hasOne(fields: ["frontendSettingsID"])
+  cognitoUserPoolID: ID!
+    @index(name: "byCognitoUserPool", sortKeyFields: ["id"])
+  cognitoUserPool: ApplicationStageCognitoUserPool
+    @hasOne(fields: ["cognitoUserPoolID"])
 }
 
 type ApplicationAiServerSnapshotReference
-    @model
-    @auth(rules: [{ allow: public }]) {
-    id: ID!
-    name: String!
+  @model
+  @auth(rules: [{ allow: public }]) {
+  id: ID!
+  name: String!
 }
 
 type Application @model @auth(rules: [{ allow: public }]) {
-    id: ID!
-    url: String!
-    name: String!
-    version: String!
-    devStageID: ID @index(name: "byDevStage", sortKeyFields: ["id"])
-    DEV: ApplicationStage @hasOne(fields: ["devStageID"])
-    stagingStageID: ID @index(name: "byStagingStage", sortKeyFields: ["id"])
-    STAGING: ApplicationStage @hasOne(fields: ["stagingStageID"])
-    prodStageID: ID @index(name: "byProdStage", sortKeyFields: ["id"])
-    PROD: ApplicationStage @hasOne(fields: ["prodStageID"])
-    aiServerSnapshotReferenceID: ID!
-        @index(name: "byAiServerSnapshotReferenceID", sortKeyFields: ["id"])
-    aiServerSnapshotReference: ApplicationAiServerSnapshotReference
-        @hasOne(fields: ["aiServerSnapshotReferenceID"])
+  id: ID!
+  url: String!
+  name: String!
+  version: String!
+  devStageID: ID @index(name: "byDevStage", sortKeyFields: ["id"])
+  DEV: ApplicationStage @hasOne(fields: ["devStageID"])
+  stagingStageID: ID @index(name: "byStagingStage", sortKeyFields: ["id"])
+  STAGING: ApplicationStage @hasOne(fields: ["stagingStageID"])
+  prodStageID: ID @index(name: "byProdStage", sortKeyFields: ["id"])
+  PROD: ApplicationStage @hasOne(fields: ["prodStageID"])
+  aiServerSnapshotReferenceID: ID!
+    @index(name: "byAiServerSnapshotReferenceID", sortKeyFields: ["id"])
+  aiServerSnapshotReference: ApplicationAiServerSnapshotReference
+    @hasOne(fields: ["aiServerSnapshotReferenceID"])
 }
